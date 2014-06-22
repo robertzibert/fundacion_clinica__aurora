@@ -13,6 +13,28 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	protected $table = 'users';
 
 	/**
+	 * The fillable variables by the model.
+	 *
+	 */
+
+	protected $fillable = [
+
+		"name",
+		"insurance",
+		"lastname",
+		"blood_type",
+		"rut",
+		"phone",
+		"cellphone",
+		"address"
+    
+    ];
+    /**
+     *  The hidden variable that never show the model
+     */
+	protected $guarded = ['id'];
+
+	/**
 	 * The attributes excluded from the model's JSON form.
 	 *
 	 * @var array
@@ -79,5 +101,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	{
 		return $this->email;
 	}
+	public function appointment(){
 
+		return $this -> hasMany('Appointment');
+	}
 }
