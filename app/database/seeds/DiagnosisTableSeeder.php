@@ -8,10 +8,10 @@ class DiagnosisTableSeeder extends Seeder {
 	public function run()
 	{
 		$faker = Faker::create();
-
+		$i = 1;
 		foreach(range(1, 10) as $index)
 		{
-			Diagnosi::create([
+			Diagnose::create([
 				"appointments_id" => $i++,
 				"observations" => $faker->text($maxNbChars = 200)
 			]);
