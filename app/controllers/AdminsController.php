@@ -9,9 +9,9 @@ class AdminsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$doctor = Doctor::all();
+		$appointment = Appointment::all();
 
-		return View::make('admins.index', compact('doctor'));
+		return View::make('admins.index', compact('appointment'));
 
 	}
 
@@ -22,7 +22,11 @@ class AdminsController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('admins.create');
+		$doctor = Doctor::lists('name','id');
+		
+		$user= User::lists('name','id');
+
+		return View::make('admins.create', compact('doctor'), compact('user'));
 	}
 
 	/**
