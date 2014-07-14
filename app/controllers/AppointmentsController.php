@@ -41,7 +41,7 @@ class AppointmentsController extends \BaseController {
 		$rules = array(
 			'doctor'=> 'required',
 			'user'  => 'required',
-			'date' 	=> 'required|numeric'
+			'date' 	=> 'required|numeric',
 			'price'	=> 'required|numeric'
 		);
 		$validator = Validator::make(Input::all(), $rules);
