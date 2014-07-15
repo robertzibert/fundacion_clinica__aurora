@@ -17,3 +17,4 @@ Route::get('/', function()
 });
 Route::resource('admins', 'AdminsController');
 Route::resource('appointments', 'AppointmentsController');
+Route::resource('doctors', 'DoctorsController');
