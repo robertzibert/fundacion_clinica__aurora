@@ -1,13 +1,7 @@
+@extends('layouts.master')
 <!-- app/views/appointments/create.blade.php -->
 
-<!DOCTYPE html>
-<html>
-<head>
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-</head>
-<body>
-<div class="container">
-
+@section('content')
 <h1>Create a Appointment</h1>
 
 <!-- if there are creation errors, they will show here -->
@@ -39,6 +33,4 @@
 
 {{ Form::close() }}
 
-</div>
-</body>
-</html>
+@stop
