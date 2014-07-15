@@ -38,7 +38,8 @@ class DoctorsController extends \BaseController {
 			'lastname'      => 'required',
 			'rut'       	=> 'required|numeric',
 			'email'      	=> 'required|email',
-			'university' 	=> 'required'
+			'university' 	=> 'required',
+			'password'		=> 'required'
 		);
 		$validator = Validator::make(Input::all(), $rules);
 
@@ -55,6 +56,7 @@ class DoctorsController extends \BaseController {
 			$doctor->rut   		   	= Input::get('rut');
 			$doctor->email      	= Input::get('email');
 			$doctor->university 	= Input::get('university');
+			$doctor->password 		= Input::get('password');
 			$doctor->save();
 
 			// redirect

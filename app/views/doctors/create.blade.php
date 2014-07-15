@@ -28,6 +28,10 @@
 		{{ Form::label('university', 'University') }}
 		{{ Form::text('university', Input::old('university')) }}
 	</div>
+	<div>
+		{{ Form::label('password', 'Password') }}
+		{{ Form::password('password', null) }}
+	</div>
 
 	{{ Form::submit('Create the doctor') }}
 
