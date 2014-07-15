@@ -18,9 +18,20 @@ class Doctor extends \Eloquent {
 
 	protected $hidden = ['password'];
 
+	 
 	public function appointment(){
 
 		return $this-> hasMany('Appointment');
 	}
+
+//Scopes
+
+	public function scopeAre_free($query,$date){
+		
+	}
+	
+
+
+
 
 }

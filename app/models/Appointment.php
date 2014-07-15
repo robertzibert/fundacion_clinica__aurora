@@ -30,5 +30,16 @@ class Appointment extends \Eloquent {
 		return $this -> hasOne("Diagnose");
 
 	} 
+
+	public function scopeAre_active($query){
+	// Este scope trae los eventos que están activos
+	// Las variables que entra son el doctor, el usuario, y la fecha
+		return $query->join('doctors', 'doctor_id', '=', 'doctors.id')
+								 ->where ('appointments.state', 'confirmed')
+								 ->orWhere('appointments.state', 'reserved')
+								 ->select('doctors.id', 'doctors.name','doctors.rut','appointments.state')
+								 ->get();
+	}
+
 }
 
