@@ -1,12 +1,7 @@
+@extends('layouts.master')
 <!-- app/views/admins/index.blade.php -->
 
-<!DOCTYPE html>
-<html>
-<head>
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-</head>
-<body>
-<div class="container">
+@section('content')
 <h1>Appointments</h1>
 
 <!-- will be used to show any messages -->
@@ -45,5 +40,5 @@
 	@endforeach
 	</tbody>
 </table>
-
 {{ HTML::link(URL::to('appointments/create'), 'Add new appointment') }}
+@stop
