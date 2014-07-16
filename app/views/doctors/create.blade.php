@@ -1,5 +1,6 @@
-<!--C:\xampp\htdocs\fundmedau\app/views/doctors/create.blade.php-->
-<!-- app/views/appointments/create.blade.php -->
+@extends('layouts.master')
+<!-- app/views/doctors/create.blade.php-->
+@section('content')
 
 <h1>Create a Doctor</h1>
 
@@ -8,35 +9,33 @@
 
 {{ Form::open(array('url' => 'doctors')) }}
 
-	<div>
+	<div class = "form-group">
 		{{ Form::label('name', 'Name') }}
-		{{ Form::text('name', Input::old('name')) }}
+		{{ Form::text('name', Input::old('name'), ['class' => 'form-control', 'placeholder' => 'Nombre']) }}
 	</div>
-	<div>
+	<div class = "form-group">
 		{{ Form::label('Lastname', 'Last name') }}
-		{{ Form::text('lastname', Input::old('lastname')) }}
+		{{ Form::text('lastname', Input::old('lastname'), ['class' => 'form-control', 'placeholder' => 'Apellido']) }}
 	</div>
-	<div>
+	<div class = "form-group">
 		{{ Form::label('rut', 'Rut') }}
-		{{ Form::text('rut', Input::old('rut')) }}
+		{{ Form::text('rut', Input::old('rut'), ['class' => 'form-control', 'placeholder' => 'Rut']) }}
 	</div>
-	<div>
+	<div class = "form-group">
 		{{ Form::label('email', 'Email') }}
-		{{ Form::text('email', Input::old('email')) }}
+		{{ Form::text('email', Input::old('email'), ['class' => 'form-control', 'placeholder' => 'Email']) }}
 	</div>
-	<div>
+	<div class = "form-group">
 		{{ Form::label('university', 'University') }}
-		{{ Form::text('university', Input::old('university')) }}
+		{{ Form::text('university', Input::old('university'), ['class' => 'form-control', 'placeholder' => 'Universidad']) }}
 	</div>
-	<div>
+	<div class = "form-group">
 		{{ Form::label('password', 'Password') }}
-		{{ Form::password('password', null) }}
+		{{ Form::password('password', ['class' => 'form-control']) }}
 	</div>
 
-	{{ Form::submit('Create the doctor') }}
+	{{ Form::submit('Create the doctor',['class' => 'btn btn-primary']) }}
 
 {{ Form::close() }}
 
-</div>
-</body>
-</html>
+@stop
