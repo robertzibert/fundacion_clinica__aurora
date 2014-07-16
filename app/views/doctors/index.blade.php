@@ -1,41 +1,38 @@
-<!--C:\xampp\htdocs\fundmedau\app/views/doctors/index.blade.php-->
-<table>
-	<th>
-		<tr>
-			<td></td>
-			<td>Nombre</td>
-			<td>Apellido</td>
-			<td>Rut</td>
-			<td>Email</td>
-			<td>Universidad</td>
-			<td>Actions</td>
-			<td></td>
-		</tr>
-	</th>
+@extends('layouts.master')
+<!-- app/views/doctors/index.blade.php-->
+@section('content')
+
+<table class = "table table-striped table-bordered">
+	<thead>
+			<th>Id</th>
+			<th>Nombre</th>
+			<th>Apellido</th>
+			<th>Rut</th>
+			<th>Email</th>
+			<th>Universidad</th>
+			<th>Actions</th>
+	</thead>
 	<tbody>
-	@foreach($doctors as $value)
+	@foreach($doctors as $doctor)
 		<tr>
-			<td>{{ $value->id }}</td>
-			<td>{{ $value->name }}</td>
-			<td>{{ $value->lastname }}</td>
-			<td>{{ $value->rut }}</td>
-			<td>{{ $value->email }}</td>
-			<td>{{ $value->university }}</td>
+			<td>{{ $doctor->id }}</td>
+			<td>{{ $doctor->name }}</td>
+			<td>{{ $doctor->lastname }}</td>
+			<td>{{ $doctor->rut }}</td>
+			<td>{{ $doctor->email }}</td>
+			<td>{{ $doctor->university }}</td>
 			<!-- we will also add show, edit, and delete buttons -->
 			<td>
-				{{ Form::open(array('url' => 'doctors/' . $value->id, 'class' => 'pull-right')) }}
+				{{ Form::open(array('url' => 'doctors/' . $doctor->id, 'class' => 'pull-right')) }}
 					{{ Form::hidden('_method', 'DELETE') }}
-					{{ Form::submit('Delete') }}
+					{{ Form::submit('Delete',["class" => "btn btn-danger"]) }}
 				{{ Form::close() }}
-			</td>
-			<td>
 				<!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
-				<a class="btn btn-small btn-info" href="{{ URL::to('doctors/' . $value->id . '/edit') }}">Edit</a>
-
+				<a class="btn btn-small btn-info" href="{{ URL::to('doctors/' . $doctor->id . '/edit') }}">Edit</a>
 			</td>
 		</tr>
 	@endforeach
 	</tbody>
 </table>
-
 {{ HTML::link(URL::to('doctors/create'), 'Add new doctor') }}
+@stop
