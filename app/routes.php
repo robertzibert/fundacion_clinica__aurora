@@ -11,10 +11,6 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
 Route::resource('admins', 'AdminsController');
 Route::resource('appointments', 'AppointmentsController');
 Route::resource('doctors', 'DoctorsController');

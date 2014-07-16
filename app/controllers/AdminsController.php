@@ -9,6 +9,7 @@ class AdminsController extends \BaseController {
 	 */
 	public function index()
 	{
+		
 		$appointment = Appointment::all();
 
 		return View::make('admins.index', compact('appointment'));
