@@ -13,7 +13,7 @@ class DiagnosisTableSeeder extends Seeder {
 		{
 			Diagnose::create([
 				"appointments_id" => $i++,
-				"observations" => $faker->text($maxNbChars = 200)
+				"observations"    => $faker->text($maxNbChars = 200)
 			]);
 		}
 	}

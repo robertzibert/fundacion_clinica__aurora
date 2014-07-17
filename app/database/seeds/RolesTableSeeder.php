@@ -7,7 +7,7 @@ class RolesTableSeeder extends Seeder {
 
 	public function run()
 	{
-		Provider::create([
+		Role::create([
 
 						'name' => "admin",
 

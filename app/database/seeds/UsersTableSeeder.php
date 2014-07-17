@@ -8,9 +8,9 @@ class UsersTableSeeder extends Seeder {
 	public function run()
 	{
 		//Creamos al admin
-		 Provider::create([
+		 User::create([
 
-
+		 				"role_id"  =>1,
 						"name"     =>"Robert",                             
 						"lastname" =>"Zibert", 
 						"email"    =>"q@q.q",                             
@@ -21,27 +21,33 @@ class UsersTableSeeder extends Seeder {
 
 
 		$faker = Faker::create();
+		$a = 1;
+		$i = 1;
 		//Creamos Doctors
 		foreach(range(1, 5) as $index)
 		{
 			User::create([
-				"doctor_id" =>1,                                                          
+				"doctor_id" =>$i++,                                                          
 				"name"      => $faker->firstName,                                  
 				"lastname"  => $faker->lastName,                            
 				"rut"       => $faker->randomNumber($nbDigits = 8),
-				"password"  => "123"                                                    
+				"password"  => "123", 
+				"email"     => $faker->email
+                                                  
 
 			]);
 		}
+		
 		//Creamos Patiens
 		foreach(range(1, 5) as $index)
 		{
 			User::create([
-				"patient_id" =>1,
+				"patient_id" =>$a++,
 				"name"       => $faker->firstName,
 				"lastname"   => $faker->lastName,
 				"rut"        => $faker->randomNumber($nbDigits = 8),
-				"password"   => "123"                                                    
+				"password"   => "123",
+				"email"      => $faker->email                                                    
 			]);
 		}
 	}

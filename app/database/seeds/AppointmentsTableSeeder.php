@@ -12,10 +12,10 @@ class AppointmentsTableSeeder extends Seeder {
 		foreach(range(1, 10) as $index)
 		{
 			Appointment::create([
-				"user_id" => $faker->numberBetween($min = 1, $max = 10),
-				"doctor_id" => $faker->numberBetween($min = 1, $max = 10),
-				"price" => $faker->numberBetween($min = 10000, $max = 90000),
-				"state" => $faker->randomElement($array = array ('reserved','confirmed','canceled','done')),
+				"patient_id"   => $faker->numberBetween($min = 1, $max = 5),
+				"doctor_id" => $faker->numberBetween($min = 1, $max = 5),
+				"price"     => $faker->numberBetween($min = 10000, $max = 90000),
+				"state"     => $faker->randomElement($array = array ('reserved','confirmed','canceled','done')),
 				"active_at" => $faker->dateTimeThisDecade($max = 'now') 
 			]);
 			
