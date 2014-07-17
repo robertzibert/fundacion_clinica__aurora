@@ -1,12 +1,9 @@
 <?php
 
 // Composer: "fzaninotto/faker": "v1.3.0"
-/**
- * Seeder para la tabla Doctors, rellena la tabla con 10 Doctores distintos
- */
 use Faker\Factory as Faker;
 
-class DoctorsTableSeeder extends Seeder {
+class PatientsTableSeeder extends Seeder {
 
 	public function run()
 	{
@@ -14,11 +11,12 @@ class DoctorsTableSeeder extends Seeder {
 
 		foreach(range(1, 5) as $index)
 		{
-			Doctor::create([
+			Patient::create([
 				"phone"      => $faker->randomNumber($nbDigits = 7),
 				"cellphone"  => $faker->randomNumber($nbDigits = 7),
-				"university" => $faker->word, 
-				
+				"insurance"  => $faker->randomElement($array = array ('Isapre','Cruz Blanca','Magallanes')),
+				"blood_type" => $faker->randomElement($array = array ('a','b','c')),
+				"address"    => $faker->address		
 			]);
 		}
 	}

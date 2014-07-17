@@ -26,8 +26,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		"rut",
 		"phone",
 		"cellphone",
-		"address"
-    
+		"address",
+    "email"
     ];
     /**
      *  The hidden variable that never show the model
@@ -101,8 +101,29 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	{
 		return $this->email;
 	}
+	/**
+	 * Hasheamos todas las passwords del usuario por default
+	 * @var string 
+	 * @return hassed_string 
+	 */
+  public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = Hash::make($value);
+
+    }
+	//Relationships
 	public function appointment(){
 
 		return $this -> hasMany('Appointment');
 	}
+
+	public function patient(){
+
+		return $this-> hasOne('User');
+	}
+	public function doctor(){
+
+		return $this-> hasOne('Doctor');
+	}
+
 }

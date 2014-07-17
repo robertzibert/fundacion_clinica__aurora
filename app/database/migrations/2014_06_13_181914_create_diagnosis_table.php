@@ -17,7 +17,7 @@ class CreateDiagnosisTable extends Migration {
 			$table->increments('id');
 			//Foreign Keys
 			$table->integer('appointments_id')->unsigned();
-			//diagnosis attr
+			//Diagnosis attr
 			$table->text('observations');
 			$table->timestamps();
 

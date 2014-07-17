@@ -16,7 +16,7 @@ class CreateAppointmentsTable extends Migration {
 		{
 			$table->increments('id');
 			//Foreign Keys
-			$table->integer('user_id')->unsigned();
+			$table->integer('patient_id')->unsigned();
 			$table->integer('doctor_id')->unsigned();
 			//appointments attr
 			$table->integer('price');
@@ -28,7 +28,7 @@ class CreateAppointmentsTable extends Migration {
 	//Foreign Keys
 		Schema::table('appointments', function($table)
 		{	
-    	$table->foreign('user_id')->references('id')->on('users');
+    	$table->foreign('patient_id')->references('id')->on('patients');
     	$table->foreign('doctor_id')->references('id')->on('doctors');
 		});
 	}
