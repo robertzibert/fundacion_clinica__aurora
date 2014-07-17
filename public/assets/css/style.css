@@ -1,0 +1,22 @@
+@import url(http://fonts.googleapis.com/css?family=Lato|Raleway);
+
+body{
+background-color: #34495e;
+font-family: 'Raleway', sans-serif;
+}
+.container-fluid.content{
+	margin-top: 80px;
+}
+.table{
+	background-color: #efefef;
+}
+.centered{
+  text-align: center;
+}
+
+#tittle{
+color: white;
+}
+.margin-top{
+margin-top: 100px;
+}
