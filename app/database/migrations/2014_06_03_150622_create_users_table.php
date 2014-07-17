@@ -15,15 +15,25 @@ class CreateUsersTable extends Migration {
 		Schema::create('users', function(Blueprint $table)
 		{
 			$table->increments('id');
+			//Foreign Keys
+			$table->integer('role_id')->nullable()->unsigned();
+			$table->integer('doctor_id')->nullable()->unsigned();
+			$table->integer('patient_id')->nullable()->unsigned();
+
 			$table->string('name');
 			$table->string('lastname');
-			$table->string('insurance');
-			$table->string('blood_type');
+      $table->string('email', 100)->unique();
+      $table->string('password');
 			$table->string('rut')->unique();
-			$table->integer('phone')->unique();
-			$table->integer('cellphone')->unique();
-			$table->string('address');
+			$table->string('remember_token', 100);
 			$table->timestamps();
+		});
+		//Foreign Keys
+		Schema::table('users', function($table)
+		{	
+    	$table->foreign('role_id')->references('id')->on('roles');
+    	$table->foreign('doctor_id')->references('id')->on('doctors');
+    	$table->foreign('patient_id')->references('id')->on('patients');
 		});
 	}
 

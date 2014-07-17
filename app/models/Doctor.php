@@ -8,19 +8,18 @@ class Doctor extends \Eloquent {
 
 	protected $fillable = [
 
-		"rut",
-		"name",
-		"lastname",
-		"email",
 		"university",
-		"password"
+		"phone",
+		"cellphone"
 	];
 
-	protected $hidden = ['password'];
-
+	
 	public function appointment(){
 
 		return $this-> hasMany('Appointment');
 	}
+	public function user(){
 
+		return $this -> belongsTo('user');
+	}
 }

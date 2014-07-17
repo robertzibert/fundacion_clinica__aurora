@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDoctorsTable extends Migration {
+class CreateRolesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,18 +12,13 @@ class CreateDoctorsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('doctors', function(Blueprint $table)
+		Schema::create('roles', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('university');
-			$table->integer('phone')->unique();
-			$table->integer('cellphone')->unique();
+			$table->char('name');
 			$table->timestamps();
-
 		});
-	}
-
-
+	}	
 	/**
 	 * Reverse the migrations.
 	 *
@@ -31,7 +26,7 @@ class CreateDoctorsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('doctors');
+		Schema::drop('roles');
 	}
 
 }
