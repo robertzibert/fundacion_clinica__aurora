@@ -119,11 +119,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	public function patient(){
 
-		return $this-> hasOne('User');
+		return $this-> belongsTo('Patient');
 	}
 	public function doctor(){
 
-		return $this-> hasOne('Doctor');
+		return $this-> belongsTo('Doctor','id');
 	}
 
 }

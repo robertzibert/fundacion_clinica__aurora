@@ -35,11 +35,17 @@ class LoginController extends \BaseController {
 
 		$input = Input::only('email','password');
 		
-		if(!Auth::doctor()->attempt($input)){return View::make('appointments.index');}
-				
-
-
-				
+		if(Auth::attempt($input)){
+			if(Auth::user()->role_id == 1){
+				return Redirect::route('admins.index');			
+			}
+			elseif (!Auth::user()->doctor_id==NULL) {
+				return Redirect::route('doctors.index');			
+			}
+			elseif (!Auth::user()->patient_id==NULL) {
+				return Redirect::route('users.index');			
+			}
+		}
 	}
 
 	/**
@@ -87,7 +93,7 @@ class LoginController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		Auth::logout();
 	}
 
 }
