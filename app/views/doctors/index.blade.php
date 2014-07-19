@@ -16,10 +16,10 @@
 	@foreach($doctors as $doctor)
 		<tr>
 			<td>{{ $doctor->id }}</td>
-			<td>{{ $doctor->name }}</td>
-			<td>{{ $doctor->lastname }}</td>
-			<td>{{ $doctor->rut }}</td>
-			<td>{{ $doctor->email }}</td>
+			<td>{{ $doctor->user->name }}</td>
+			<td>{{ $doctor->user->lastname }}</td>
+			<td>{{ $doctor->user->rut }}</td>
+			<td>{{ $doctor->user->email }}</td>
 			<td>{{ $doctor->university }}</td>
 			<!-- we will also add show, edit, and delete buttons -->
 			<td>

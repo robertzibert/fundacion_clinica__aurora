@@ -1,5 +1,6 @@
 <?php
-
+use Illuminate\Auth\UserInterface;
+use Illuminate\Auth\Reminders\RemindableInterface;
 class DoctorsController extends \BaseController {
 
 	/**
@@ -49,16 +50,18 @@ class DoctorsController extends \BaseController {
 				->withErrors($validator)
 				->withInput(Input::except('password'));
 		} else {
-			// store
-			$doctor = new Doctor;
-			$doctor->name       	= Input::get('name');
-			$doctor->lastname       = Input::get('lastname');
-			$doctor->rut   		   	= Input::get('rut');
-			$doctor->email      	= Input::get('email');
-			$doctor->university 	= Input::get('university');
-			$doctor->password 		= Input::get('password');
-			$doctor->save();
+			
 
+			//Asi guardamos un doctor
+			$doctor = new Doctor;
+			$doctor->university =Input::get('university');
+			$doctor->save();
+			
+			$input = Input::except('university');
+			$user = new User($input);
+			$user->doctor_id = $doctor->id;
+			$user->save();
+			
 			// redirect
 			Session::flash('message', 'Successfully created Doctor!');
 			return Redirect::to('doctors');
@@ -118,11 +121,11 @@ class DoctorsController extends \BaseController {
 		} else {
 			// store
 			$doctor = Doctor::find($id);
-			$doctor->name       	= Input::get('name');
-			$doctor->lastname       = Input::get('lastname');
-			$doctor->rut   		   	= Input::get('rut');
-			$doctor->email      	= Input::get('email');
-			$doctor->university 	= Input::get('university');
+			$doctor->name       = Input::get('name');
+			$doctor->lastname   = Input::get('lastname');
+			$doctor->rut        = Input::get('rut');
+			$doctor->email      = Input::get('email');
+			$doctor->university = Input::get('university');
 			$doctor->save();
 
 			// redirect
