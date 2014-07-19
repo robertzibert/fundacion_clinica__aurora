@@ -134,7 +134,7 @@ class PatientsController extends \BaseController {
 			$patient->save();
 			
 			$input = Input::except('insurance','blood_type','address','gender','phone','cellphone');
-			$user = User::where('patient_id', = , $patient->id)->update($input);
+			$user = User::where('patient_id', '=' , $patient->id)->update($input);
 			$user->save();
 			// redirect
 			Session::flash('message', 'Successfully updated Patient');
