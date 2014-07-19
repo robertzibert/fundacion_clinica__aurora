@@ -123,7 +123,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	}
 	public function doctor(){
 
-		return $this-> belongsTo('Doctor','id');
+		return $this-> belongsTo('Doctor');
 	}
 
 }

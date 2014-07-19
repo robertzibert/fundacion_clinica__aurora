@@ -50,7 +50,9 @@ class DoctorsController extends \BaseController {
 				->withErrors($validator)
 				->withInput(Input::except('password'));
 		} else {
-			// store
+			
+
+			//Asi guardamos un doctor
 			$doctor = new Doctor;
 			$doctor->university =Input::get('university');
 			$doctor->save();
@@ -119,11 +121,11 @@ class DoctorsController extends \BaseController {
 		} else {
 			// store
 			$doctor = Doctor::find($id);
-			$doctor->name       	= Input::get('name');
-			$doctor->lastname       = Input::get('lastname');
-			$doctor->rut   		   	= Input::get('rut');
-			$doctor->email      	= Input::get('email');
-			$doctor->university 	= Input::get('university');
+			$doctor->name       = Input::get('name');
+			$doctor->lastname   = Input::get('lastname');
+			$doctor->rut        = Input::get('rut');
+			$doctor->email      = Input::get('email');
+			$doctor->university = Input::get('university');
 			$doctor->save();
 
 			// redirect
