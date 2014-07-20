@@ -9,7 +9,8 @@ class LoginController extends \BaseController {
 	 * @return Response
 	 */
 	public function index()
-	{
+	{	
+		Auth::logout();
 		return View::make('home');
 	}
 

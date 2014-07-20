@@ -1,7 +1,21 @@
 <?php
+use Illuminate\Auth\UserInterface;
 
 class AdminsController extends \BaseController {
 
+/**
+ *
+ * 
+ */
+	public function history()
+	
+	{
+		
+		$appointments = Appointment::orderBy('active_at')->get();
+
+		return View::make('appointments.history', compact('appointments'));
+
+	}
 	/**
 	 * Display a listing of admins
 	 *
@@ -10,9 +24,9 @@ class AdminsController extends \BaseController {
 	public function index()
 	{
 		
-		$appointment = Appointment::all();
+		$appointments = Appointment::where('active_at', '>=', new DateTime('today'))->get();
 
-		return View::make('admins.index', compact('appointment'));
+		return View::make('admins.index', compact('appointments'));
 
 	}
 

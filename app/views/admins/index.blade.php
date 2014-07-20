@@ -18,10 +18,14 @@
 		</tr>
 	</thead>
 	<tbody>
-	@foreach($appointment as $value)
+	{{--Handling Exeptions--}}
+	@if($appointments->isEmpty())
+		<tr><td>No hay consultas pendientes</td></tr>
+	@endif	
+	@foreach($appointments as $appointment)
 		<tr>
-			<td>{{ $value->price }}</td>
-			<td>{{ $value->state }}</td>
+			<td>{{ $appointment->price }}</td>
+			<td>{{ $appointment->state }}</td>
 
 			<!-- we will also add show, edit, and delete buttons -->
 			<td>
@@ -30,10 +34,10 @@
 				<!-- we will add this later since its a little more complicated than the other two buttons -->
 
 				<!-- show the nerd (uses the show method found at GET /nerds/{id} -->
-				<a class="btn btn-small btn-success" href="{{ URL::to('appointments/' . $value->id) }}">Delete</a>
+				<a class="btn btn-small btn-success" href="{{ URL::to('appointments/' . $appointment->id) }}">Delete</a>
 
 				<!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
-				<a class="btn btn-small btn-info" href="{{ URL::to('appointments/' . $value->id . '/edit') }}">Edit</a>
+				<a class="btn btn-small btn-info" href="{{ URL::to('appointments/' . $appointment->id . '/edit') }}">Edit</a>
 
 			</td>
 		</tr>

@@ -11,6 +11,7 @@
 |
 */
 Route::resource('/', 'LoginController');
+Route::get('admins/history','AdminsController@history');
 Route::resource('login', 'LoginController');
 Route::resource('admins', 'AdminsController');
 Route::resource('appointments', 'AppointmentsController');
