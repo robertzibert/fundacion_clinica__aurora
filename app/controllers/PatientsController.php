@@ -129,13 +129,23 @@ class PatientsController extends \BaseController {
 				->withInput(Input::except('password'));
 		} else {
 			// store
-			$input = Input::except('name','lastname','rut','email','password');
-			$patient = Patient::find($id)->update($input);
+
+			$patient = Patient::find($id);
+			$patient->insurance = Input::get('insurance');
+			$patient->blood_type = Input::get('blood_type');
+			$patient->address = Input::get('address');
+			$patient->gender = Input::get('gender');
+			$patient->phone = Input::get('phone');
+			$patient->cellphone = Input::get('cellphone');
 			$patient->save();
 			
-			$input = Input::except('insurance','blood_type','address','gender','phone','cellphone');
-			$user = User::where('patient_id', '=' , $patient->id)->update($input);
+			$user = User::where('patient_id', '=' , $patient->id);
+			$user->name = input::get('name');
+			$user->name = input::get('lastname');
+			$user->name = input::get('rut');
+			$user->name = input::get('email');
 			$user->save();
+
 			// redirect
 			Session::flash('message', 'Successfully updated Patient');
 			return Redirect::to('patients');
