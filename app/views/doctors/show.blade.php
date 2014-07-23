@@ -15,20 +15,23 @@
 			<th>Email Paciente</th>
 			<th>Fecha</th>
 			<th>Precio Consulta</th>
+			<th>Estado de la Consulta</th>
 			<th>Actions</th>
 	</thead>
 	<tbody>
 	@foreach($appointments as $appointment)
 		<tr>
 			<td>{{ $appointment->id }}</td>
-			<td>{{ $appointment->patient->name }}</td>
-			<td>{{ $appointment->patient->lastname }}</td>
-			<td>{{ $appointment->patient->email }}</td>
+			<td>{{ $appointment->patient->user->name }}</td>
+			<td>{{ $appointment->patient->user->lastname }}</td>
+			<td>{{ $appointment->patient->user->email }}</td>
 			<td>{{ $appointment->active_at }}</td>
 			<td>{{ $appointment->price }}</td>
+			<td>{{ $appointment->state}}</td>
 			<!-- we will also add show, edit, and delete buttons -->
 			<td>
-				
+				<a class="btn btn-small btn-info" href="{{ URL::to('appointments/' . $appointment->id . '/edit') }}">Edit</a>
+
 			</td>
 		</tr>
 	@endforeach

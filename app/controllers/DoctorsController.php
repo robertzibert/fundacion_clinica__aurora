@@ -152,3 +152,36 @@ class DoctorsController extends \BaseController {
 	}
 
 }
+
+public function editAppointment($id)
+{
+	$appointment = Appointment::find($id);
+
+	return View::make('doctors.appointmentState', compact('appointment'));
+}
+
+public function updateAppointment($id)
+{
+	// validate
+	// read more on validation at http://laravel.com/docs/validation
+	$rules = array(
+		'state'      	=> 'required',
+	);
+	$validator = Validator::make(Input::all(), $rules);
+
+	// process the login
+	if ($validator->fails()) {
+		return Redirect::to('doctors/index')
+			->withErrors($validator)
+			->withInput(Input::except('password'));
+	} else {
+		// store
+		$appointment = Appointment::find($id);
+		$appointment->state       = Input::get('state');
+		$appointment->save();
+
+		// redirect
+		Session::flash('message', 'Successfully updated Appointment');
+		return Redirect::to('doctors');
+	}
+}
