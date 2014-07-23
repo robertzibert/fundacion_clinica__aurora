@@ -8,7 +8,9 @@ class Appointment extends \Eloquent {
 		
 		"price",
 		"state",
-		"active_at"
+		"active_at",
+		"doctor_id",
+		"patient_id"
 	];
 
 	protected $guarded = ['id',"user_id","doctor_id"];
@@ -21,7 +23,7 @@ class Appointment extends \Eloquent {
 
 	public function user(){
 
-		return $this -> belongsTo("User");
+		return $this -> belongsTo("Patient");
 
 	} 
 

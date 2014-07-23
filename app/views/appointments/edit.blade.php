@@ -2,7 +2,7 @@
 <!-- app/views/appointments/edit.blade.php -->
 
 @section('content')
-<h1>Edit a Appointment between Dr. {{$appointment->doctor->user->name}} and patient (patient)</h1>
+<h1>Edit a Appointment between Dr. {{$appointment->doctor->user->name}} {{$appointment->doctor->user->lastname}} and patient {{$appointment->patient->user->name}} {{$appointment->patient->user->lastname}}</h1>
 
 <!-- if there are creation errors, they will show here -->
 {{ HTML::ul($errors->all()) }}

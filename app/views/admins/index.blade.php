@@ -26,7 +26,7 @@
 		<tr>
 			<td>{{$value->id}}</td>
 			<td>{{$value->doctor->user->name}}</td>
-			<td>asd</td> <!--revisar relacion de patient con appointment en el modelo-->
+			<td>{{$value->patient->user->name}}</td>
 			<td>{{ $value->price }}</td>
 			<td>{{ $value->state }}</td>
 			<td>{{ $value->active_at}}</td>

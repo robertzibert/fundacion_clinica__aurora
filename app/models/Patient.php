@@ -18,6 +18,10 @@ class Patient extends \Eloquent {
 		"address"    
     ];
     
+	public function appointment(){
+
+		return $this-> hasMany('Appointment');
+	}
 	public function user(){
 
 		return $this -> hasOne('User');
