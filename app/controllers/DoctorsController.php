@@ -151,9 +151,7 @@ class DoctorsController extends \BaseController {
 		return Redirect::to('doctors');
 	}
 
-}
-
-public function editAppointment($id)
+	public function editAppointment($id)
 {
 	$appointment = Appointment::find($id);
 
@@ -185,3 +183,5 @@ public function updateAppointment($id)
 		return Redirect::to('doctors');
 	}
 }
+}
+

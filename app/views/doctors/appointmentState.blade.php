@@ -6,7 +6,7 @@
 <!-- if there are creation errors, they will show here -->
 {{ HTML::ul($errors->all()) }}
 
-{{ Form::model($appointment, array('route' => array('doctors.updateAppointment', $appointment->id), 'method' => 'PUT')) }}
+{{ Form::model($appointment, array('action' => array('DoctorsController@updateAppointment',$appointment->id))) }}
 
 	<div class="form-group">
 		{{ Form::label('price', 'Price') }}

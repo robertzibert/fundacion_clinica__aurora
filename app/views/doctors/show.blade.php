@@ -30,7 +30,7 @@
 			<td>{{ $appointment->state}}</td>
 			<!-- we will also add show, edit, and delete buttons -->
 			<td>
-				<a class="btn btn-small btn-info" href="{{ URL::to('appointments/' . $appointment->id . '/edit') }}">Edit</a>
+				<a class="btn btn-small btn-info" href="{{ URL::to('appointments/' . $appointment->id . '/editappointment') }}">Edit</a>
 
 			</td>
 		</tr>
