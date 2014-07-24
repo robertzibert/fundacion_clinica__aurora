@@ -10,9 +10,12 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
+Route::post('doctors/updateAppointment/{id}', 'DoctorsController@updateAppointment');
+Route::get('appointments/{appointment_id}/editappointment', 'DoctorsController@editAppointment');
 Route::resource('/', 'LoginController');
 Route::get('admins/history','AdminsController@history');
 Route::resource('login', 'LoginController');
 Route::resource('admins', 'AdminsController');
 Route::resource('appointments', 'AppointmentsController');
 Route::resource('doctors', 'DoctorsController');
+Route::resource('patients', 'PatientsController');
