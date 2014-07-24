@@ -23,6 +23,8 @@
 			<td>{{ $doctor->university }}</td>
 			<!-- we will also add show, edit, and delete buttons -->
 			<td>
+				<a class="btn btn-small btn-success" href="{{ URL::to('doctors/' . $doctor->id) }}">Show this Doctor</a>
+
 				{{ Form::open(array('url' => 'doctors/' . $doctor->id, 'class' => 'pull-right')) }}
 					{{ Form::hidden('_method', 'DELETE') }}
 					{{ Form::submit('Delete',["class" => "btn btn-danger"]) }}
