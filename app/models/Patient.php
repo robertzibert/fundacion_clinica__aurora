@@ -14,6 +14,7 @@ class Patient extends \Eloquent {
 		"cellphone",
 		"insurance",
 		"blood_type",
+		"gender",
 		"address"    
     ];
     

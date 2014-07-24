@@ -17,3 +17,4 @@ Route::resource('login', 'LoginController');
 Route::resource('admins', 'AdminsController');
 Route::resource('appointments', 'AppointmentsController');
 Route::resource('doctors', 'DoctorsController');
+Route::resource('patients', 'PatientsController');
