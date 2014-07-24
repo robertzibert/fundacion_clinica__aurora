@@ -14,7 +14,7 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Doctores<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Ver Doctores</a></li>
+            <li>{{HTML::linkRoute('doctors.index', 'Ver Doctores')}}</li>
             <li><a href="#">Agregar Doctor</a></li>
           </ul>
         </li>

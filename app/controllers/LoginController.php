@@ -40,11 +40,11 @@ class LoginController extends \BaseController {
 			if(Auth::user()->role_id == 1){
 				return Redirect::route('admins.index');			
 			}
-			elseif (!Auth::user()->doctor_id==NULL) {
-				return Redirect::route('doctors.index');			
+			elseif (!Auth::user()->doctor_id == NULL) {
+				return Redirect::to('doctors/'.Auth::user()->doctor_id);			
 			}
 			elseif (!Auth::user()->patient_id==NULL) {
-				return Redirect::route('users.index');			
+				return Redirect::route('users.index')->with('nick', $username);			
 			}
 		}
 	}
