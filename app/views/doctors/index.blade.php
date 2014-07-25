@@ -1,4 +1,3 @@
-<!--C:\xampp\htdocs\fundmedau\app/views/doctors/index.blade.php-->
 <table>
 	<th>
 		<tr>

@@ -32,5 +32,15 @@ class Appointment extends \Eloquent {
 		return $this -> hasOne("Diagnose");
 
 	} 
+	public function getActiveAt(){
+
+		return $this -> hasOne("Diagnose");
+
+	} 
+	
+	public function getDates()
+	{
+    return ['created_at','updated_at','active_at'];
+	}
 }
 

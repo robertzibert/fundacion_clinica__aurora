@@ -9,7 +9,8 @@ class LoginController extends \BaseController {
 	 * @return Response
 	 */
 	public function index()
-	{
+	{	
+		Auth::logout();
 		return View::make('home');
 	}
 
@@ -39,11 +40,11 @@ class LoginController extends \BaseController {
 			if(Auth::user()->role_id == 1){
 				return Redirect::route('admins.index');			
 			}
-			elseif (!Auth::user()->doctor_id==NULL) {
-				return Redirect::route('doctors.index');			
+			elseif (!Auth::user()->doctor_id == NULL) {
+				return Redirect::to('doctorspiv/'.Auth::user()->doctor_id);			
 			}
 			elseif (!Auth::user()->patient_id==NULL) {
-				return Redirect::route('users.index');			
+				return Redirect::route('users.index')->with('nick', $username);			
 			}
 		}
 	}
@@ -91,9 +92,10 @@ class LoginController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy()
 	{
 		Auth::logout();
+		return Redirect::to('/');
 	}
 
 }

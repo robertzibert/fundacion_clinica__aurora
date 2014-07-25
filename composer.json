@@ -6,7 +6,10 @@
 	"require": {
 		"laravel/framework": "4.1.*",
 		"way/generators": "2.*",
-		"fzaninotto/faker": "1.4.*"
+		"fzaninotto/faker": "1.4.*",
+		"jenssegers/date": "*",
+		"nesbot/Carbon": "*"
+
 
 	},
 	"autoload": {

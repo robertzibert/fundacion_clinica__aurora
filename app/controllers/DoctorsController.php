@@ -76,7 +76,7 @@ class DoctorsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$doctor = Doctor::findOrFail($id);
+		$doctor = Doctor::find($id);
 		$appointments= $doctor->appointment;
 		return View::make('doctors.show', compact('doctor'), compact("appointments"));
 	}

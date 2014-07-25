@@ -1,8 +1,8 @@
 @extends('layouts.master')
-<!-- app/views/admins/index.blade.php -->
+<!-- app/views/appointments/history.blade.php -->
 
 @section('content')
-<h1>Appointments</h1>
+<h1>Consultas</h1>
 
 <!-- will be used to show any messages -->
 @if (Session::has('message'))
@@ -14,19 +14,17 @@
 		<tr>
 			<td>Precio</td>
 			<td>Estado</td>
+			<td>Fecha</td>
 			<td>Actions</td>
 		</tr>
 	</thead>
 	<tbody>
-	{{--Handling Exeptions--}}
-	@if($appointments->isEmpty())
-		<tr><td>No hay consultas pendientes</td></tr>
-	@endif	
+	
 	@foreach($appointments as $appointment)
 		<tr>
 			<td>{{ $appointment->price }}</td>
 			<td>{{ $appointment->state }}</td>
-
+			<td>{{ $appointment->active_at->format('Y-m-d') }}</td>
 			<!-- we will also add show, edit, and delete buttons -->
 			<td>
 
@@ -44,5 +42,7 @@
 	@endforeach
 	</tbody>
 </table>
+{{ HTML::link(URL::to('admins/history'), 'Ver todas las consultas') }}
+<br>
 {{ HTML::link(URL::to('appointments/create'), 'Add new appointment') }}
 @stop
