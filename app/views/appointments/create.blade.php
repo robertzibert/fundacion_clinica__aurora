@@ -7,16 +7,28 @@
 <!-- if there are creation errors, they will show here -->
 {{ HTML::ul($errors->all()) }}
 
-{{ Form::open(array('url' => 'admins')) }}
+{{ Form::open(array('url' => 'appointments')) }}
 
 	<div class="form-group">
 		{{ Form::label('doctor', 'Doctor') }}
-		{{ Form::select('doctor', $doctor, Input::old('doctor'), array('class' => 'form-control')) }}
-	</div>
+<select name="doctor" class ="form-control">
 
-	<div class="form-group">
-		{{ Form::label('user', 'User') }}
-		{{ Form::select('user', $user, Input::old('user'), array('class' => 'form-control')) }} 
+@foreach($doctors as $doctor)
+{{"<option value=".
+$doctor->id.">".$doctor->user->name."</option>"}}
+@endforeach
+</select>
+	</div>
+		<div class="form-group">
+		{{ Form::label('patient', 'Patient') }}
+<select name="patient" class ="form-control">
+
+@foreach($patients as $patient)
+{{"<option value=".
+$patient->id.">".$patient->user->name."</option>"}}
+@endforeach
+</select>
+
 	</div>
 
 	<div class="form-group">
@@ -29,6 +41,10 @@
 		{{ Form::text('price', Input::old('price'), array('class' => 'form-control')) }}
 	</div>
 
+	<div class="form-group">
+		{{ Form::label('state', 'State') }}
+		{{ Form::select('state', array('reserved' => 'reserved', 'canceled' => 'canceled', 'confirmed' => 'confirmed')) }}
+	</div>
 	{{ Form::submit('Create the appointment', array('class' => 'btn btn-primary')) }}
 
 {{ Form::close() }}

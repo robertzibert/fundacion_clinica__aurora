@@ -21,11 +21,9 @@ class AppointmentsController extends \BaseController {
 	 */
 	public function create()
 	{
-		$doctor = Doctor::lists('name','id');
-		
-		$user= User::lists('name','id');
-
-		return View::make('appointments.create', compact('doctor'), compact('user'));
+		$patients = Patient::all();
+		$doctors = Doctor::all();
+		return View::make('appointments.create', compact('doctors'), compact('patients'));
 	}
 
 
@@ -39,10 +37,11 @@ class AppointmentsController extends \BaseController {
 		// validate
 		// read more on validation at http://laravel.com/docs/validation
 		$rules = array(
-			'doctor'=> 'required',
-			'user'  => 'required',
-			'date' 	=> 'required|numeric',
-			'price'	=> 'required|numeric'
+			'doctor'	=> 'required',
+			'patient'  	=> 'required',
+			'date' 		=> 'required',
+			'price'		=> 'required|numeric',
+			'state'		=> 'required'
 		);
 		$validator = Validator::make(Input::all(), $rules);
 
@@ -55,9 +54,10 @@ class AppointmentsController extends \BaseController {
 			// store
 			$appointment = new Appointment;
 			$appointment->doctor_id     	= Input::get('doctor');
-			$appointment->user_id     		= Input::get('user');
+			$appointment->patient_id   		= Input::get('patient');
 			$appointment->active_at 		= Input::get('date');
 			$appointment->price 			= Input::get('price');
+			$appointment->state 			= Input::get('state');
 			$appointment->save();
 
 			// redirect
@@ -87,9 +87,13 @@ class AppointmentsController extends \BaseController {
 	 */
 	public function edit($id)
 	{
+
+		$patients = Patient::all();
+		$doctors = Doctor::all();
 		$appointment = Appointment::find($id);
 
-		return View::make('appointments.edit', compact('appointment'));
+		return View::make('appointments.edit', compact('appointment'),compact('patients'))
+		->with(compact('doctors'));
 	}
 
 	/**
@@ -100,18 +104,36 @@ class AppointmentsController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$appointment = Appointment::findOrFail($id);
+		// validate
+		// read more on validation at http://laravel.com/docs/validation
+		$rules = array(
+			'doctor'=> 'required',
+			'patient'  => 'required',
+			'date' 	=> 'required',
+			'price'	=> 'required|numeric',
+			'state'		=> 'required'
+		);
+		$validator = Validator::make(Input::all(), $rules);
 
-		$validator = Validator::make($data = Input::all(), Appointment::$rules);
+		// process the login
+		if ($validator->fails()) {
+			return Redirect::to('appointments/edit')
+				->withErrors($validator)
+				->withInput(Input::except('password'));
+		} else {
+			// store
+			$appointment = Appointment::find($id);
+			$appointment->doctor_id     	= Input::get('doctor');
+			$appointment->patient_id   		= Input::get('patient');
+			$appointment->active_at 		= Input::get('date');
+			$appointment->price 			= Input::get('price');
+			$appointment->state 			= Input::get('state');
+			$appointment->save();
 
-		if ($validator->fails())
-		{
-			return Redirect::back()->withErrors($validator)->withInput();
+			// redirect
+			Session::flash('message', 'Successfully edited appointment!');
+			return Redirect::to('admins');
 		}
-
-		$appointment->update($data);
-
-		return Redirect::route('appointments.index');
 	}
 
 	/**
@@ -122,9 +144,13 @@ class AppointmentsController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		Appointment::destroy($id);
+		// delete
+		$appointment = Appointment::find($id);
+		$appointment->delete();
 
-		return Redirect::route('appointments.index');
+		// redirect
+		Session::flash('message', 'Successfully deleted the Appointment!');
+		return Redirect::to('admins');
 	}
 
 }
