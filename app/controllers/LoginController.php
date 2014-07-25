@@ -41,7 +41,7 @@ class LoginController extends \BaseController {
 				return Redirect::route('admins.index');			
 			}
 			elseif (!Auth::user()->doctor_id == NULL) {
-				return Redirect::to('doctors/'.Auth::user()->doctor_id);			
+				return Redirect::to('doctorspiv/'.Auth::user()->doctor_id);			
 			}
 			elseif (!Auth::user()->patient_id==NULL) {
 				return Redirect::route('users.index')->with('nick', $username);			
@@ -92,9 +92,10 @@ class LoginController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy()
 	{
 		Auth::logout();
+		return Redirect::to('/');
 	}
 
 }

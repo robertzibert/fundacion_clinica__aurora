@@ -14,15 +14,15 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Doctores<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li>{{HTML::linkRoute('doctors.index', 'Ver Doctores')}}</li>
-            <li><a href="#">Agregar Doctor</a></li>
+            <li><a href="/doctors">Ver Doctores</a></li>
+            <li><a href="/doctors/create">Agregar Doctor</a></li>
           </ul>
         </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pacientes <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Ver Pacientes</a></li>
-            <li><a href="#">Agregar Pacientes</a></li>
+            <li><a href="/patients">Ver Pacientes</a></li>
+            <li><a href="/patients/create">Agregar Pacientes</a></li>
           </ul>
         </li>
       </ul>
@@ -40,7 +40,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{Auth::user()->name}}<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="#">Editar Perfil</a></li>
-            <li><a href="#">Salir</a></li>
+            <li><a href="logout">Salir</a></li>
           </ul>
         </li>        
 @endif      
