@@ -139,11 +139,11 @@ class PatientsController extends \BaseController {
 			$patient->cellphone = Input::get('cellphone');
 			$patient->save();
 			
-			$user = User::where('patient_id', '=' , $patient->id);
+			$user = User::where('patient_id', '=' , $patient->id)->first();
 			$user->name = input::get('name');
-			$user->name = input::get('lastname');
-			$user->name = input::get('rut');
-			$user->name = input::get('email');
+			$user->lastname = input::get('lastname');
+			$user->rut = input::get('rut');
+			$user->email = input::get('email');
 			$user->save();
 
 			// redirect
@@ -162,11 +162,14 @@ class PatientsController extends \BaseController {
 	{
 		// delete
 		$patient = Patient::find($id);
+		$user = User::where('patient_id', '=' , $patient->id)->first();
+		$user->delete();
 		$patient->delete();
 
 		// redirect
 		Session::flash('message', 'Successfully deleted the Patient!');
 		return Redirect::to('patients');
 	}
+
 
 }
