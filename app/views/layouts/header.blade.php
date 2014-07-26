@@ -8,9 +8,13 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 @if(Auth::check() and Auth::user()->role_id == 1)
       <ul class="nav navbar-nav">
-        <li class="dropdown" >
-          <a href="#">Consultas</a>
-        </li>
+        <li class="dropdown">  
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Consultas<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/admins/history">Ver todas</a></li>
+            <li><a href="/admins">Ver Pendientes</a></li>
+          </ul>
+        </li>  
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Doctores<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
