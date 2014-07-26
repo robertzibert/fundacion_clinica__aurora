@@ -30,6 +30,13 @@
 		{{ Form::text('university', Input::old('university'), ['class' => 'form-control', 'placeholder' => 'Universidad']) }}
 	</div>
 	<div class = "form-group">
+		{{ Form::label('phone', 'Phone') }}
+		{{ Form::text('phone', Input::old('phone'), ['class' => 'form-control', 'placeholder' => 'Telefono']) }}
+	</div>
+	<div class = "form-group">
+		{{ Form::label('cellphone', 'Cellphone') }}
+		{{ Form::text('cellphone', Input::old('cellphone'), ['class' => 'form-control', 'placeholder' => 'celular']) }}
+	<div class = "form-group">
 		{{ Form::label('password', 'Password') }}
 		{{ Form::password('password', ['class' => 'form-control']) }}
 	</div>

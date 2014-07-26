@@ -6,7 +6,7 @@
 
 {{ HTML::ul($errors->all()) }}
 
-{{ Form::model($doctor, array('route' => array('doctors.update', $doctor->user->id), 'method' => 'PUT')) }}
+{{ Form::model($doctor, array('route' => array('doctors.update', $doctor->id), 'method' => 'PUT')) }}
 
 	<div class = "form-group">
 		{{ Form::label('name', 'Name') }}
@@ -28,6 +28,13 @@
 		{{ Form::label('university', 'University') }}
 		{{ Form::text('university', $doctor->university, ['class' => 'form-control', 'placeholder' => 'Universidad']) }}
 	</div>
+	<div class = "form-group">
+		{{ Form::label('phone', 'Phone') }}
+		{{ Form::text('phone', $doctor->phone, ['class' => 'form-control', 'placeholder' => 'Telefono']) }}
+	</div>
+	<div class = "form-group">
+		{{ Form::label('cellphone', 'Cellphone') }}
+		{{ Form::text('cellphone', $doctor->cellphone, ['class' => 'form-control', 'placeholder' => 'celular']) }}
 
 	{{ Form::submit('Edit the Doctor',["class" => "btn btn-primary"]) }}
 

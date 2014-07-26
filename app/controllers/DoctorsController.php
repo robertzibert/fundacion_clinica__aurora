@@ -40,13 +40,15 @@ class DoctorsController extends \BaseController {
 			'rut'       	=> 'required|numeric',
 			'email'      	=> 'required|email',
 			'university' 	=> 'required',
-			'password'		=> 'required'
+			'password'		=> 'required',
+			'phone'			=> 'required|numeric',
+			'cellphone'		=> 'required|numeric'		
 		);
 		$validator = Validator::make(Input::all(), $rules);
 
 		// process the login
 		if ($validator->fails()) {
-			return Redirect::to('doctors/create')
+			return Redirect::to('doctors/update')
 				->withErrors($validator)
 				->withInput(Input::except('password'));
 		} else {
@@ -55,18 +57,22 @@ class DoctorsController extends \BaseController {
 			//Asi guardamos un doctor
 			$doctor = new Doctor;
 			$doctor->university =Input::get('university');
+			$doctor->phone =Input::get('phone');
+			$doctor->cellphone =Input::get('cellphone');
 			$doctor->save();
 			
-			$input = Input::except('university');
+			$input = Input::except('university','phone','cellphone');
 			$user = new User($input);
 			$user->doctor_id = $doctor->id;
 			$user->save();
+
 			
 			// redirect
 			Session::flash('message', 'Successfully created Doctor!');
 			return Redirect::to('doctors');
 		}
 	}
+
 
 	/**
 	 * Display the specified doctor.
@@ -109,7 +115,9 @@ class DoctorsController extends \BaseController {
 			'lastname'      => 'required',
 			'rut'       	=> 'required|numeric',
 			'email'      	=> 'required|email',
-			'university' 	=> 'required'
+			'university' 	=> 'required',
+			'phone'			=> 'required|numeric',
+			'cellphone'		=> 'required|numeric'		
 		);
 		$validator = Validator::make(Input::all(), $rules);
 
@@ -121,12 +129,17 @@ class DoctorsController extends \BaseController {
 		} else {
 			// store
 			$doctor = Doctor::find($id);
-			$doctor->name       = Input::get('name');
-			$doctor->lastname   = Input::get('lastname');
-			$doctor->rut        = Input::get('rut');
-			$doctor->email      = Input::get('email');
-			$doctor->university = Input::get('university');
+			$doctor->phone =Input::get('phone');
+			$doctor->cellphone =Input::get('cellphone');
+			$doctor->university =Input::get('university');
 			$doctor->save();
+
+			$user = User::where('doctor_id', '=' , $doctor->id)->first();
+			$user->name = input::get('name');
+			$user->lastname = input::get('lastname');
+			$user->rut = input::get('rut');
+			$user->email = input::get('email');
+			$user->save();
 
 			// redirect
 			Session::flash('message', 'Successfully updated Doctor');
@@ -144,6 +157,8 @@ class DoctorsController extends \BaseController {
 	{
 		// delete
 		$doctor = Doctor::find($id);
+		$user = User::where('doctor_id', '=' , $doctor->id)->first();
+		$user->delete();
 		$doctor->delete();
 
 		// redirect
