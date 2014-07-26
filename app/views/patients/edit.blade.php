@@ -6,7 +6,7 @@
 
 {{ HTML::ul($errors->all()) }}
 
-{{ Form::model($patient, array('route' => array('patients.update', $patient->user->id), 'method' => 'PUT')) }}
+{{ Form::model($patient, array('route' => array('patients.update', $patient->id), 'method' => 'PUT')) }}
 	
 	<div class = "form-group">
 		{{ Form::label('name', 'Name') }}
@@ -50,7 +50,7 @@
 		{{ Form::text('cellphone', $patient->cellphone, ['class' => 'form-control', 'placeholder' => 'celular']) }}
 	</div>
 
-	{{ Form::submit('Edit the pattient',['class' => 'btn btn-primary']) }}
+	{{ Form::submit('Edit the patient',['class' => 'btn btn-primary']) }}
 
 {{ Form::close() }}
 

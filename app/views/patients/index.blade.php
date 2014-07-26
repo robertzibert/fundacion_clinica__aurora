@@ -1,6 +1,8 @@
-<!--C:\xampp\htdocs\fundmedau\app/views/patients/index.blade.php-->
-<!--C:\xampp\htdocs\fundmedau\app/views/doctors/index.blade.php-->
-<table border="1">
+@extends('layouts.master')
+<!--app/views/patients/index.blade.php-->
+@section('content')
+<h1>Pacientes</h1>
+<table class="table table-striped table-bordered">
 	<th>
 		<tr>
 			<td></td>
@@ -15,7 +17,6 @@
 			<td>Telefono</td>
 			<td>Celular</td>
 			<td>Actions</td>
-			<td></td>
 		</tr>
 	</th>
 	<tbody>
@@ -36,10 +37,8 @@
 			<td>
 				{{ Form::open(array('url' => 'patients/' . $value->id, 'class' => 'pull-right')) }}
 					{{ Form::hidden('_method', 'DELETE') }}
-					{{ Form::submit('Delete') }}
+					{{ Form::submit('Delete',["class" => "btn btn-danger"]) }}
 				{{ Form::close() }}
-			</td>
-			<td>
 				<!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
 				<a class="btn btn-small btn-info" href="{{ URL::to('patients/' . $value->id . '/edit') }}">Edit</a>
 

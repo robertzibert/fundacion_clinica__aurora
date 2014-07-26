@@ -2,12 +2,12 @@
 <!--app/views/patients/create.blade.php-->
 @section('content')
 
-<h1>Create a Pattient</h1>
+<h1>Create a Patient</h1>
 
 <!-- if there are creation errors, they will show here -->
 {{ HTML::ul($errors->all()) }}
 
-{{ Form::open(array('url' => 'pattients')) }}
+{{ Form::open(array('url' => 'patients')) }}
 
 	<div class = "form-group">
 		{{ Form::label('name', 'Name') }}
@@ -35,7 +35,7 @@
 	</div>
 	<div class = "form-group">
 		{{ Form::label('address', 'Address') }}
-		{{ Form::text('address', Input::old('address'), ['class' => 'form-control', 'placeholder' => 'Genero']) }}
+		{{ Form::text('address', Input::old('address'), ['class' => 'form-control', 'placeholder' => 'Address']) }}
 	</div>
 	</div>
 	<div class = "form-group">
@@ -55,7 +55,7 @@
 		{{ Form::password('password', ['class' => 'form-control']) }}
 	</div>
 
-	{{ Form::submit('Create the pattient',['class' => 'btn btn-primary']) }}
+	{{ Form::submit('Create the patient',['class' => 'btn btn-primary']) }}
 
 {{ Form::close() }}
 
