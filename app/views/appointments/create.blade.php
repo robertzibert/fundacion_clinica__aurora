@@ -7,16 +7,16 @@
 <!-- if there are creation errors, they will show here -->
 {{ HTML::ul($errors->all()) }}
 
-{{ Form::open(array('url' => 'admins')) }}
+{{ Form::open(array('url' => 'appointments')) }}
 
 	<div class="form-group">
 		{{ Form::label('doctor', 'Doctor') }}
-		{{ Form::select('doctor', $doctor, Input::old('doctor'), array('class' => 'form-control')) }}
+		{{ Form::select('doctor', $doctors, Input::old('doctor'), array('class' => 'form-control')) }}
 	</div>
 
 	<div class="form-group">
-		{{ Form::label('user', 'User') }}
-		{{ Form::select('user', $user, Input::old('user'), array('class' => 'form-control')) }} 
+		{{ Form::label('Paciente', 'User') }}
+		{{ Form::select('patient', $patients, Input::old('patient'), array('class' => 'form-control')) }} 
 	</div>
 
 	<div class="form-group">
