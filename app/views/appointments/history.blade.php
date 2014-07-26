@@ -42,7 +42,6 @@
 	@endforeach
 	</tbody>
 </table>
-{{ HTML::link(URL::to('admins/history'), 'Ver todas las consultas') }}
-<br>
+
 {{ HTML::link(URL::to('appointments/create'), 'Add new appointment') }}
 @stop

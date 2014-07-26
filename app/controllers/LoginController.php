@@ -10,11 +10,23 @@ class LoginController extends \BaseController {
 	 */
 	public function index()
 	{	
-		Auth::logout();
-		return View::make('home');
-	}
-
-	/**
+		if(Auth::check()){
+				if(Auth::user()->role_id == 1){
+					return Redirect::route('admins.index');			
+				}
+				elseif (!Auth::user()->doctor_id == NULL) {
+					return Redirect::to('doctors/'.Auth::user()->doctor_id);			
+				}
+				else{
+					return Redirect::to('/');			
+				}
+			}
+			else{
+					return Redirect::to('/');			
+				}
+		}	
+	
+		/**
 	 * Show the form for creating a new resource.
 	 * GET /login/create
 	 *
@@ -41,12 +53,17 @@ class LoginController extends \BaseController {
 				return Redirect::route('admins.index');			
 			}
 			elseif (!Auth::user()->doctor_id == NULL) {
-				return Redirect::to('doctorspiv/'.Auth::user()->doctor_id);			
+				return Redirect::to('doctors/'.Auth::user()->doctor_id);			
 			}
-			elseif (!Auth::user()->patient_id==NULL) {
-				return Redirect::route('users.index')->with('nick', $username);			
+			else{
+				Session::flash('message', 'This is a message!'); 
+				return Redirect::to('/');			
 			}
 		}
+		else{
+				Session::flash('message', 'Porfavor revisa que los datos sean correctos'); 
+				return Redirect::to('/');			
+			}
 	}
 
 	/**

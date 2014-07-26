@@ -20,7 +20,7 @@
 	<tbody>
 	{{--Handling Exeptions--}}
 	@if($appointments->isEmpty())
-		<tr><td>No hay consultas pendientes</td></tr>
+		<tr><td class = "centered" colspan="3">No hay consultas pendientes</td></tr>
 	@endif	
 	@foreach($appointments as $appointment)
 		<tr>
@@ -44,5 +44,7 @@
 	@endforeach
 	</tbody>
 </table>
-{{ HTML::link(URL::to('appointments/create'), 'Add new appointment') }}
+{{ HTML::link(URL::to('admins/history'), 'Ver todas las consultas') }}
+<br>
+{{ HTML::link(URL::to('appointments/create'), 'Agregar nueva consulta') }}
 @stop
