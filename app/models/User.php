@@ -13,6 +13,28 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	protected $table = 'users';
 
 	/**
+	 * The fillable variables by the model.
+	 *
+	 */
+
+	protected $fillable = [
+
+		"name",
+		"insurance",
+		"lastname",
+		"blood_type",
+		"rut",
+		"phone",
+		"cellphone",
+		"address",
+    "email"
+    ];
+    /**
+     *  The hidden variable that never show the model
+     */
+	protected $guarded = ['id'];
+
+	/**
 	 * The attributes excluded from the model's JSON form.
 	 *
 	 * @var array
@@ -78,6 +100,30 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public function getReminderEmail()
 	{
 		return $this->email;
+	}
+	/**
+	 * Hasheamos todas las passwords del usuario por default
+	 * @var string 
+	 * @return hassed_string 
+	 */
+  public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = Hash::make($value);
+
+    }
+	//Relationships
+	public function appointment(){
+
+		return $this -> hasMany('Appointment');
+	}
+
+	public function patient(){
+
+		return $this-> belongsTo('Patient');
+	}
+	public function doctor(){
+
+		return $this-> belongsTo('Doctor');
 	}
 
 }
