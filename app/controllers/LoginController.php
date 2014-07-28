@@ -17,12 +17,9 @@ class LoginController extends \BaseController {
 				elseif (!Auth::user()->doctor_id == NULL) {
 					return Redirect::to('doctors/'.Auth::user()->doctor_id);			
 				}
-				else{
-					return Redirect::to('/');			
-				}
 			}
 			else{
-					return Redirect::to('/');			
+					return View::make('home');			
 				}
 		}	
 	

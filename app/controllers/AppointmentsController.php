@@ -21,11 +21,10 @@ class AppointmentsController extends \BaseController {
 	 */
 	public function create()
 	{
-		$doctor = Doctor::lists('name','id');
-		
-		$user= User::lists('name','id');
+		$doctors  = User::whereNotNull('doctor_id')->lists('name','id');		
+		$patients = User::whereNotNull('patient_id')->lists('name','id');	
 
-		return View::make('appointments.create', compact('doctor'), compact('user'));
+		return View::make('appointments.create', compact('doctors'), compact('patients'));
 	}
 
 
@@ -39,13 +38,14 @@ class AppointmentsController extends \BaseController {
 		// validate
 		// read more on validation at http://laravel.com/docs/validation
 		$rules = array(
-			'doctor'=> 'required',
-			'user'  => 'required',
-			'date' 	=> 'required|numeric',
-			'price'	=> 'required|numeric'
-		);
+			'doctor'  => 'required',                     
+			'patient' => 'required',            
+			'date'    => 'required',                     
+			'price'   => 'required|numeric'
+			);
 		$validator = Validator::make(Input::all(), $rules);
-
+		$patient_id = User::find(Input::get('patient'))->patient->id;
+		$doctor_id  = User::find(Input::get('doctor'))->doctor->id;
 		// process the login
 		if ($validator->fails()) {
 			return Redirect::to('appointments/create')
@@ -54,9 +54,10 @@ class AppointmentsController extends \BaseController {
 		} else {
 			// store
 			$appointment = new Appointment;
-			$appointment->doctor_id     	= Input::get('doctor');
-			$appointment->user_id     		= Input::get('user');
-			$appointment->active_at 		= Input::get('date');
+			$appointment->doctor_id   = $doctor_id;
+			$appointment->patient_id  = $patient_id;
+			$appointment->state 			= 'reserved';
+			$appointment->active_at 	= Input::get('date');
 			$appointment->price 			= Input::get('price');
 			$appointment->save();
 
