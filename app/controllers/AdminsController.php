@@ -24,9 +24,9 @@ class AdminsController extends \BaseController {
 	public function index()
 	{
 		
-		$appointments = Appointment::where('active_at', '>=', new DateTime('today'))->get();
-
-		return View::make('admins.index', compact('appointments'));
+		$appointments_today = Appointment::where('active_at', '=', new DateTime('today'))->get();
+		$appointments_tomorrow = Appointment::where('active_at', '=', new DateTime('tomorrow'))->get();
+		return View::make('admins.index', compact('appointments_today','appointments_tomorrow'));
 
 	}
 
