@@ -37,8 +37,8 @@ class DoctorsController extends \BaseController {
 		$rules = array(
 			'name'      	=> 'required',
 			'lastname'      => 'required',
-			'rut'       	=> 'required|numeric',
-			'email'      	=> 'required|email',
+			'rut'       	=> 'required|numeric|unique:users',
+			'email'      	=> 'required|email|unique:users',
 			'university' 	=> 'required',
 			'password'		=> 'required',
 			'phone'			=> 'required|numeric',

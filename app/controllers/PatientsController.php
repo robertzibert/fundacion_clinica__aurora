@@ -36,8 +36,8 @@ class PatientsController extends \BaseController {
 		$rules = array(
 			'name'      	=> 'required',
 			'lastname'      => 'required',
-			'rut'       	=> 'required|numeric',
-			'email'      	=> 'required|email',
+			'rut'       	=> 'required|numeric|unique:users',
+			'email'      	=> 'required|email|unique:users',
 			'insurance'		=> 'required',
 			'blood_type'	=> 'required',
 			'address'		=> 'required',
