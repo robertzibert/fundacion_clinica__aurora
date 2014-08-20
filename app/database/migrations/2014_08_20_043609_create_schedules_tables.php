@@ -18,7 +18,13 @@ class CreateSchedulesTables extends Migration {
 			$table->dateTime('date');
 			$table->time('hour');	
 			$table->timestamps();
-			$table->dateTime('active_at');
+
+			$table->integer('doctor_id')->nullable()->unsigned();
+			
+		});
+		Schema::table('schedules', function($table)
+		{	
+    	$table->foreign('doctor_id')->references('id')->on('doctors');
 		});
 	}
 
