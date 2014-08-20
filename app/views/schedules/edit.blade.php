@@ -1,1 +1,5 @@
-/home/robert/fundacion/app/views/schedules/edit.blade.php
+@extends('layouts/master')
+<!--app/views/schedules/edit.blade.php-->
+@section('content')
+
+@stop

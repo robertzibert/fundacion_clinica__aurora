@@ -20,3 +20,5 @@ Route::resource('admins', 'AdminsController');
 Route::resource('doctors', 'DoctorsController');
 Route::resource('appointments', 'AppointmentsController');
 Route::resource('patients', 'PatientsController');
+Route::resource('schedules', 'SchedulesController');
+

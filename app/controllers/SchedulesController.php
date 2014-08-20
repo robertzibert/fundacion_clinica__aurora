@@ -1,4 +1,4 @@
-<?php
+}<?php
 
 class SchedulesController extends \BaseController {
 
@@ -9,9 +9,9 @@ class SchedulesController extends \BaseController {
 	 */
 	public function index()
 	{
-		$schedules = Schedule::all();
+		$doctors = Doctor::all();
 
-		return View::make('schedules.index', compact('schedules'));
+		return View::make('schedules.index', compact('doctors'));
 	}
 
 	/**
@@ -64,7 +64,14 @@ class SchedulesController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		$schedule = Schedule::find($id);
+		$schedules = Schedule::where('doctor_id','=', $id);
+		
+		foreach ($schedules as $schedule) {
+			$taken_time[] = $schedules->date.$schedules->hour;	
+		}
+		
+		$first_day = date("Y-m-d", strtotime("monday this week"));
+		$last_day = date("Y-m-d", strtotime("friday this week"));
 
 		return View::make('schedules.edit', compact('schedule'));
 	}
