@@ -21,7 +21,8 @@ class CreateAppointmentsTable extends Migration {
 			//appointments attr
 			$table->integer('price');
 			$table->text('state');
-			$table->dateTime('active_at');	
+			$table->dateTime('active_at');
+			$table->time('hour');	
 			$table->timestamps();
 		});
 
