@@ -16,7 +16,6 @@ class CreateSchedulesTables extends Migration {
 		{
 			$table->increments('id');
 			$table->dateTime('date');
-			$table->time('hour');	
 			$table->timestamps();
 			$table->integer('doctor_id')->nullable()->unsigned();
 			

@@ -31,16 +31,22 @@ class SchedulesController extends \BaseController {
 	 */
 	public function store()
 	{
-		$validator = Validator::make($data = Input::all(), Schedule::$rules);
-
-		if ($validator->fails())
-		{
-			return Redirect::back()->withErrors($validator)->withInput();
+		$doctors = Doctor::all();		
+		$doctor  = Input::get('doctor_id');
+		$dates   = Input::get('date');
+ 
+ 
+ 
+ 		foreach ($dates as $key => $date) {
+			
+			$schedule = new Schedule;
+			$schedule->doctor_id = $doctor;
+			$schedule->date = $date;
+			$schedule->save();	
 		}
+ 
 
-		Schedule::create($data);
-
-		return Redirect::route('schedules.index');
+		return View::make('schedules.index',compact('dates','doctors'));
 	}
 
 	/**
