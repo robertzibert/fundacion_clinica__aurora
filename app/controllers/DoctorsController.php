@@ -110,14 +110,15 @@ class DoctorsController extends \BaseController {
 	{
 		// validate
 		// read more on validation at http://laravel.com/docs/validation
+		$doctor = Doctor::find($id);
 		$rules = array(
 			'name'      	=> 'required',
 			'lastname'      => 'required',
-			'rut'       	=> 'required|numeric|unique:users',
-			'email'      	=> 'required|email|unique:users',
+			'rut'       	=> 'required|numeric|unique:users,rut,'.$doctor->user->id,
+			'email'      	=> 'required|email|unique:users,email,'.$doctor->user->id,
 			'university' 	=> 'required',
-			'phone'			=> 'required|numeric|unique:doctors',
-			'cellphone'		=> 'required|numeric|unique:doctors'		
+			'phone'			=> 'required|numeric|unique:doctors,phone,'.$id,
+			'cellphone'		=> 'required|numeric|unique:doctors,cellphone,'.$id		
 		);
 		$validator = Validator::make(Input::all(), $rules);
 

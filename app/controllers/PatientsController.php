@@ -108,17 +108,18 @@ class PatientsController extends \BaseController {
 	{
 		// validate
 		// read more on validation at http://laravel.com/docs/validation
+		$patient = Patient::find($id);
 		$rules = array(
 			'name'      	=> 'required',
 			'lastname'      => 'required',
-			'rut'       	=> 'required|numeric|unique:users',
-			'email'      	=> 'required|email|unique:users',
+			'rut'       	=> 'required|numeric|unique:users,rut,'.$patient->user->id,
+			'email'      	=> 'required|email|unique:users,email,'.$patient->user->id,
 			'insurance'		=> 'required',
 			'blood_type'	=> 'required',
 			'address'		=> 'required',
 			'gender'		=> 'required',
-			'phone'		 	=> 'required|unique:patients',
-			'cellphone'		=> 'required|unique:patients'
+			'phone'			=> 'required|numeric|unique:patients,phone,'.$id,
+			'cellphone'		=> 'required|numeric|unique:patients,cellphone,'.$id	
 		);
 		$validator = Validator::make(Input::all(), $rules);
 
