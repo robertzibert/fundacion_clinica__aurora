@@ -42,8 +42,8 @@ class PatientsController extends \BaseController {
 			'blood_type'	=> 'required',
 			'address'		=> 'required',
 			'gender'		=> 'required',
-			'phone'		 	=> 'required',
-			'cellphone'		=> 'required',
+			'phone'		 	=> 'required|unique:patients',
+			'cellphone'		=> 'required|unique:patients',
 			'password'		=> 'required'
 		);
 		$validator = Validator::make(Input::all(), $rules);
@@ -111,14 +111,14 @@ class PatientsController extends \BaseController {
 		$rules = array(
 			'name'      	=> 'required',
 			'lastname'      => 'required',
-			'rut'       	=> 'required|numeric',
-			'email'      	=> 'required|email',
+			'rut'       	=> 'required|numeric|unique:users',
+			'email'      	=> 'required|email|unique:users',
 			'insurance'		=> 'required',
 			'blood_type'	=> 'required',
 			'address'		=> 'required',
 			'gender'		=> 'required',
-			'phone'		 	=> 'required',
-			'cellphone'		=> 'required'
+			'phone'		 	=> 'required|unique:patients',
+			'cellphone'		=> 'required|unique:patients'
 		);
 		$validator = Validator::make(Input::all(), $rules);
 
