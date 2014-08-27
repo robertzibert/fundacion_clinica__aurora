@@ -8,6 +8,9 @@ class Schedule extends \Eloquent {
 	];
 
 	// Don't forget to fill this array
-	protected $fillable = [];
+	protected $fillable = [
+		"date",
+		"doctor_id"
+	];
 
 }

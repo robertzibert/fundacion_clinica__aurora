@@ -9,9 +9,9 @@ class SchedulesController extends \BaseController {
 	 */
 	public function index()
 	{
-		$schedules = Schedule::all();
+		$doctors = Doctor::all();
 
-		return View::make('schedules.index', compact('schedules'));
+		return View::make('schedules.index', compact('doctors'));
 	}
 
 	/**
@@ -31,16 +31,22 @@ class SchedulesController extends \BaseController {
 	 */
 	public function store()
 	{
-		$validator = Validator::make($data = Input::all(), Schedule::$rules);
-
-		if ($validator->fails())
-		{
-			return Redirect::back()->withErrors($validator)->withInput();
+		$doctors = Doctor::all();		
+		$doctor  = Input::get('doctor_id');
+		$dates   = Input::get('date');
+ 
+ 
+ 
+ 		foreach ($dates as $key => $date) {
+			
+			$schedule = new Schedule;
+			$schedule->doctor_id = $doctor;
+			$schedule->date = $date;
+			$schedule->save();	
 		}
+ 
 
-		Schedule::create($data);
-
-		return Redirect::route('schedules.index');
+		return View::make('schedules.index',compact('dates','doctors'));
 	}
 
 	/**
@@ -63,10 +69,25 @@ class SchedulesController extends \BaseController {
 	 * @return Response
 	 */
 	public function edit($id)
-	{
-		$schedule = Schedule::find($id);
+		{
+		$schedules = Schedule::where('doctor_id','=', $id);
+		$doctor    = Doctor::find($id);		
+		foreach ($schedules as $schedule) {
+			$taken_time[] = $schedules->date.$schedules->hour;	
+		}
+		
+		$first_day  = date("Y-m-d", strtotime("monday this week"));
+		
+		$second_day = date('Y-m-d', strtotime($first_day . ' + 1 day'));
+		$third_day  = date('Y-m-d', strtotime($first_day . ' + 2 day'));
+		$forth_day  = date('Y-m-d', strtotime($first_day . ' + 3 day'));
+		$last_day   = date("Y-m-d", strtotime("friday this week"));
 
-		return View::make('schedules.edit', compact('schedule'));
+		$hour = new DateTime('8:00:00');
+		$initial_hour = $hour -> format('H:i');
+
+
+		return View::make('schedules.edit', compact('initial_hour','schedule','first_day','second_day','third_day','forth_day','last_day','taken_time','doctor'));
 	}
 
 	/**
