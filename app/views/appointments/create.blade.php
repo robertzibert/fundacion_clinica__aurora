@@ -13,8 +13,7 @@
 		{{ Form::label('doctor', 'Doctor') }}
 		{{ Form::select('doctor', $doctors, Input::old('doctor'), array('class' => 'form-control')) }}
 	</div>
-
-	<div class="form-group">
+		<div class="form-group">
 		{{ Form::label('Paciente', 'User') }}
 		{{ Form::select('patient', $patients, Input::old('patient'), array('class' => 'form-control')) }} 
 	</div>

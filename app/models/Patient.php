@@ -17,8 +17,8 @@ class Patient extends \Eloquent {
 		"gender",
 		"address"    
     ];
-    
-    public function appointment(){
+ 
+ 	public function appointment(){
 
 		return $this-> hasMany('Appointment');
 	}

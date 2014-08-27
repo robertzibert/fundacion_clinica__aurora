@@ -12,9 +12,10 @@
 <table class="table table-striped table-bordered">
 	<thead>
 		<tr>
+<<<<<<< HEAD
 			<td>Nombre Paciente</td>
 			<td>Rut Paciente</td>
-			<td>Precio</td>
+			<td>Telefono Paciente</td>
 			<td>Estado</td>
 			<td>Actions</td>
 		</tr>
@@ -69,7 +70,6 @@
 			<td>{{ $appointment->patient->user->rut }}</td>
 			<td>{{ $appointment->patient->user->phone }}</td>
 			<td>{{ $appointment->state }}</td>
-
 			<!-- we will also add show, edit, and delete buttons -->
 			<td>
 
