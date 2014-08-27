@@ -37,18 +37,18 @@ class DoctorsController extends \BaseController {
 		$rules = array(
 			'name'      	=> 'required',
 			'lastname'      => 'required',
-			'rut'       	=> 'required|numeric',
-			'email'      	=> 'required|email',
+			'rut'       	=> 'required|numeric|unique:users',
+			'email'      	=> 'required|email|unique:users',
 			'university' 	=> 'required',
 			'password'		=> 'required',
-			'phone'			=> 'required|numeric',
-			'cellphone'		=> 'required|numeric'		
+			'phone'			=> 'required|numeric|unique:doctors',
+			'cellphone'		=> 'required|numeric|unique:doctors'	
 		);
 		$validator = Validator::make(Input::all(), $rules);
 
 		// process the login
 		if ($validator->fails()) {
-			return Redirect::to('doctors/update')
+			return Redirect::to('doctors/create')
 				->withErrors($validator)
 				->withInput(Input::except('password'));
 		} else {
@@ -110,14 +110,15 @@ class DoctorsController extends \BaseController {
 	{
 		// validate
 		// read more on validation at http://laravel.com/docs/validation
+		$doctor = Doctor::find($id);
 		$rules = array(
 			'name'      	=> 'required',
 			'lastname'      => 'required',
-			'rut'       	=> 'required|numeric',
-			'email'      	=> 'required|email',
+			'rut'       	=> 'required|numeric|unique:users,rut,'.$doctor->user->id,
+			'email'      	=> 'required|email|unique:users,email,'.$doctor->user->id,
 			'university' 	=> 'required',
-			'phone'			=> 'required|numeric',
-			'cellphone'		=> 'required|numeric'		
+			'phone'			=> 'required|numeric|unique:doctors,phone,'.$id,
+			'cellphone'		=> 'required|numeric|unique:doctors,cellphone,'.$id		
 		);
 		$validator = Validator::make(Input::all(), $rules);
 
