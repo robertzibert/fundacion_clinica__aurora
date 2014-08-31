@@ -22,7 +22,8 @@ class DoctorsController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('doctors.create');
+		$specialisms = Specialism::all()->lists('name','id');
+		return View::make('doctors.create',compact('specialisms'));
 	}
 
 	/**
@@ -36,12 +37,12 @@ class DoctorsController extends \BaseController {
 		// read more on validation at http://laravel.com/docs/validation
 		$rules = array(
 			'name'      	=> 'required',
-			'lastname'      => 'required',
+			'lastname'    => 'required',
 			'rut'       	=> 'required|numeric|unique:users',
 			'email'      	=> 'required|email|unique:users',
 			'university' 	=> 'required',
 			'password'		=> 'required',
-			'phone'			=> 'required|numeric|unique:doctors',
+			'phone'				=> 'required|numeric|unique:doctors',
 			'cellphone'		=> 'required|numeric|unique:doctors'	
 		);
 		$validator = Validator::make(Input::all(), $rules);
@@ -55,14 +56,15 @@ class DoctorsController extends \BaseController {
 			
 
 			//Asi guardamos un doctor
-			$doctor = new Doctor;
-			$doctor->university =Input::get('university');
-			$doctor->phone =Input::get('phone');
-			$doctor->cellphone =Input::get('cellphone');
+			$doctor                = new Doctor;
+			$doctor->university    =Input::get('university');
+			$doctor->phone         =Input::get('phone');
+			$doctor->cellphone     =Input::get('cellphone');
+			$doctor->specialism_id =Input::get('specialism');
 			$doctor->save();
 			
-			$input = Input::except('university','phone','cellphone');
-			$user = new User($input);
+			$input           = Input::except('university','phone','cellphone','specialism');
+			$user            = new User($input);
 			$user->doctor_id = $doctor->id;
 			$user->save();
 
@@ -96,8 +98,9 @@ class DoctorsController extends \BaseController {
 	public function edit($id)
 	{
 		$doctor = Doctor::find($id);
+		$specialisms = Specialism::all()->lists('name','id');
 
-		return View::make('doctors.edit', compact('doctor'));
+		return View::make('doctors.edit', compact('doctor','specialisms'));
 	}
 
 	/**
@@ -112,13 +115,13 @@ class DoctorsController extends \BaseController {
 		// read more on validation at http://laravel.com/docs/validation
 		$doctor = Doctor::find($id);
 		$rules = array(
-			'name'      	=> 'required',
-			'lastname'      => 'required',
-			'rut'       	=> 'required|numeric|unique:users,rut,'.$doctor->user->id,
-			'email'      	=> 'required|email|unique:users,email,'.$doctor->user->id,
-			'university' 	=> 'required',
-			'phone'			=> 'required|numeric|unique:doctors,phone,'.$id,
-			'cellphone'		=> 'required|numeric|unique:doctors,cellphone,'.$id		
+			'name'       => 'required',                                                                                                                                                                                
+			'lastname'   => 'required',                                                                                                                                                                        
+			'rut'        => 'required|numeric|unique:users,rut,'.$doctor->user->id,
+			'email'      => 'required|email|unique:users,email,'.$doctor->user->id,
+			'university' => 'required',                                                                                                                                                                                
+			'phone'      => 'required|numeric|unique:doctors,phone,'.$id,                                                
+			'cellphone'  => 'required|numeric|unique:doctors,cellphone,'.$id		                
 		);
 		$validator = Validator::make(Input::all(), $rules);
 
@@ -129,17 +132,18 @@ class DoctorsController extends \BaseController {
 				->withInput(Input::except('password'));
 		} else {
 			// store
-			$doctor = Doctor::find($id);
-			$doctor->phone =Input::get('phone');
-			$doctor->cellphone =Input::get('cellphone');
+			$doctor             = Doctor::find($id);
+			$doctor->phone      =Input::get('phone');
+			$doctor->cellphone  =Input::get('cellphone');
 			$doctor->university =Input::get('university');
+			$doctor->specialism_id =Input::get('specialism');
 			$doctor->save();
 
-			$user = User::where('doctor_id', '=' , $doctor->id)->first();
-			$user->name = input::get('name');
+			$user           = User::where('doctor_id', '=' , $doctor->id)->first();
+			$user->name     = input::get('name');
 			$user->lastname = input::get('lastname');
-			$user->rut = input::get('rut');
-			$user->email = input::get('email');
+			$user->rut      = input::get('rut');
+			$user->email    = input::get('email');
 			$user->save();
 
 			// redirect

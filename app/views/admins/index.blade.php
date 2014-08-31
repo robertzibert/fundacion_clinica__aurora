@@ -12,7 +12,6 @@
 <table class="table table-striped table-bordered">
 	<thead>
 		<tr>
-<<<<<<< HEAD
 			<td>Nombre Paciente</td>
 			<td>Rut Paciente</td>
 			<td>Telefono Paciente</td>
