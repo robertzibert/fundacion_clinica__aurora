@@ -29,6 +29,13 @@
             <li><a href="/patients/create">Agregar Pacientes</a></li>
           </ul>
         </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Especialidades <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/specialisms">Ver Especialidades</a></li>
+            <li><a href="/specialisms/create">Agregar Especialidades</a></li>
+          </ul>
+        </li>
       </ul>
 @endif      
 @if(Auth::check() and Auth::user()->doctor_id != 0)

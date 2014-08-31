@@ -29,6 +29,10 @@
 		{{ Form::text('university', $doctor->university, ['class' => 'form-control', 'placeholder' => 'Universidad']) }}
 	</div>
 	<div class = "form-group">
+		{{ Form::label('specialism', 'Especialidad') }}
+		{{ Form::select('specialism',$specialisms, $doctor->specialism->id, ['class' => 'form-control']) }}
+	</div>
+	<div class = "form-group">
 		{{ Form::label('phone', 'Phone') }}
 		{{ Form::text('phone', $doctor->phone, ['class' => 'form-control', 'placeholder' => 'Telefono']) }}
 	</div>

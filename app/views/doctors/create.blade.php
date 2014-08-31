@@ -30,6 +30,10 @@
 		{{ Form::text('university', Input::old('university'), ['class' => 'form-control', 'placeholder' => 'Universidad']) }}
 	</div>
 	<div class = "form-group">
+		{{ Form::label('specialism', 'Especialidad') }}
+		{{ Form::select('specialism', $specialisms, Input::old('specialism'), ['class' => 'form-control']) }}
+	</div>
+	<div class = "form-group">
 		{{ Form::label('phone', 'Phone') }}
 		{{ Form::text('phone', Input::old('phone'), ['class' => 'form-control', 'placeholder' => 'Telefono']) }}
 	</div>
