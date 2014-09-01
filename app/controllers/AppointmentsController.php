@@ -152,4 +152,16 @@ class AppointmentsController extends \BaseController {
 		return Redirect::to('admins');
 	}
 
+		public function step_1()
+	{
+		return View::make('appointments.step_1');
+	}
+
+		public function step_2()
+	{
+		$rut  = Input::get('rut');
+		$user = User::where('rut', '=', $rut)->firstOrFail();
+		
+		return View::make('appointments.step_2',compact('rut','user'));
+	}
 }
