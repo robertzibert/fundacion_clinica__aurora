@@ -27,18 +27,20 @@
 			<td>{{ $doctor->cellphone }}</td>
 			<!-- we will also add show, edit, and delete buttons -->
 			<td>
-				<a class="btn btn-small btn-success" href="{{ URL::to('doctors/' . $doctor->id) }}">Show this Doctor</a>
+				<div class="btn-group">
+					<a class="btn btn-small btn-success" href="{{ URL::to('doctors/' . $doctor->id) }}">Mostrar Doctor</a>
 
-				{{ Form::open(array('url' => 'doctors/' . $doctor->id, 'class' => 'pull-right')) }}
-					{{ Form::hidden('_method', 'DELETE') }}
-					{{ Form::submit('Delete',["class" => "btn btn-danger"]) }}
-				{{ Form::close() }}
-				<!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
-				<a class="btn btn-small btn-info" href="{{ URL::to('doctors/' . $doctor->id . '/edit') }}">Edit</a>
+					{{ Form::open(array('url' => 'doctors/' . $doctor->id, 'class' => 'pull-right')) }}
+						{{ Form::hidden('_method', 'DELETE') }}
+						{{ Form::submit('Eliminar',["class" => "btn btn-small	 btn-danger"]) }}
+					{{ Form::close() }}
+					<!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
+					<a class="btn btn-small btn-info" href="{{ URL::to('doctors/' . $doctor->id . '/edit') }}">Editar</a>
+				</div>
 			</td>
 		</tr>
 	@endforeach
 	</tbody>
 </table>
-{{ HTML::link(URL::to('doctors/create'), 'Add new doctor') }}
+{{ HTML::link(URL::to('doctors/create'), 'Agregar Nuevo Doctor', ["class"=>"btn btn-small btn-success"]) }}
 @stop

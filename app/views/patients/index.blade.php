@@ -35,17 +35,18 @@
 			<td>{{ $value->cellphone }}</td>			
 			<!-- we will also add show, edit, and delete buttons -->
 			<td>
-				{{ Form::open(array('url' => 'patients/' . $value->id, 'class' => 'pull-right')) }}
-					{{ Form::hidden('_method', 'DELETE') }}
-					{{ Form::submit('Delete',["class" => "btn btn-danger"]) }}
-				{{ Form::close() }}
-				<!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
-				<a class="btn btn-small btn-info" href="{{ URL::to('patients/' . $value->id . '/edit') }}">Edit</a>
-
+				<div class="btn-group">
+					{{ Form::open(array('url' => 'patients/' . $value->id, 'class' => 'pull-right')) }}
+						{{ Form::hidden('_method', 'DELETE') }}
+						{{ Form::submit('Eliminar',["class" => "btn btn-danger"]) }}
+					{{ Form::close() }}
+					<!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
+					<a class="btn btn-small btn-info" href="{{ URL::to('patients/' . $value->id . '/edit') }}">Editar</a>
+				</div>
 			</td>
 		</tr>
 	@endforeach
 	</tbody>
 </table>
 
-{{ HTML::link(URL::to('patients/create'), 'Add new patients') }}
+{{ HTML::link(URL::to('patients/create'), 'Agregar nuevo paciente', ["class"=>"btn btn-small btn-success"]) }}
