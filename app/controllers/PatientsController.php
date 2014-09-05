@@ -162,14 +162,10 @@ class PatientsController extends \BaseController {
 	public function destroy($id)
 	{
 		// delete
+		$user    = User::where('patient_id', '=' , $id)->first();
+		$user->delete();
 		$patient = Patient::find($id);
 		$patient->delete();
-
-		$user    = User::where('patient_id', '=' , $patient->id)->first();
-		$user->delete();
-
-		$appointments = Appointments::where('patient_id', '=' , $patient->id)->get;
-		$appointments->delete();
 
 		// redirect
 		Session::flash('message', 'Successfully deleted the Patient!');
