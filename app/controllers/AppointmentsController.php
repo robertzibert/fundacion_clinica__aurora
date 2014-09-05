@@ -38,14 +38,12 @@ class AppointmentsController extends \BaseController {
 		// validate
 		// read more on validation at http://laravel.com/docs/validation
 		$rules = array(
-			'doctor'  => 'required',                     
-			'patient' => 'required',            
-			'date'    => 'required',                     
-			'price'   => 'required|numeric'
+			'doctor_id'  => 'required',                         
+			'patient_id' => 'required',                                  
+			'active_at'  => 'required',                     
+			'price'      => 'required|numeric'                                      
 			);
 		$validator = Validator::make(Input::all(), $rules);
-		$patient_id = User::find(Input::get('patient'))->patient->id;
-		$doctor_id  = User::find(Input::get('doctor'))->doctor->id;
 		// process the login
 		if ($validator->fails()) {
 			return Redirect::to('appointments/create')
@@ -54,11 +52,11 @@ class AppointmentsController extends \BaseController {
 		} else {
 			// store
 			$appointment = new Appointment;
-			$appointment->doctor_id   = $doctor_id;
-			$appointment->patient_id  = $patient_id;
-			$appointment->state 			= 'reserved';
-			$appointment->active_at 	= Input::get('date');
+			$appointment->doctor_id   = Input::get('doctor_id');
+			$appointment->patient_id  = Input::get('patient_id');
+			$appointment->active_at 	= date("Y-m-d H:i:s", strtotime(Input::get('active_at')));    
 			$appointment->price 			= Input::get('price');
+			$appointment->state 			= 'reserved';
 			$appointment->save();
 
 			// redirect
@@ -159,9 +157,32 @@ class AppointmentsController extends \BaseController {
 
 		public function step_2()
 	{
-		$rut  = Input::get('rut');
-		$user = User::where('rut', '=', $rut)->firstOrFail();
 		
-		return View::make('appointments.step_2',compact('rut','user'));
+		try{
+    $rut  = Input::get('rut');
+		$user = User::where('rut', '=', $rut)->firstOrFail();
+		}
+		catch (Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+    Session::flash('message', 'Paciente no existe');
+		return Redirect::route('appointments.create.step_1');    
+		}
+		$specialisms = Specialism::all()->lists('name','id');		
+		return View::make('appointments.step_2',compact('rut','user','specialisms'));
+	}
+
+	public function step_3(){
+		
+		$user         = User::find(Input::get('user'));
+		$specialism   = Specialism::find(Input::get('specialism'));
+		$date         = Input::get('date')." ".Input::get('hour');
+		$schedules    = Schedule::where("date", "=", $date)->lists('doctor_id');
+		$appointments = Appointment::where("active_at", "=", $date)->lists('doctor_id');
+		$doctors_busy = array_unique(array_merge($schedules, $appointments));
+		
+		$doctors_available = Doctor::whereNotIn('id', $doctors_busy)
+												->where('specialism_id', '=', $specialism->id)
+												->get();
+												
+		return View::make('appointments.step_3',compact('date','schedules','doctors_available','user','specialism'));
 	}
 }

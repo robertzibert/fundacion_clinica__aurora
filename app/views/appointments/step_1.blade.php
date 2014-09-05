@@ -5,7 +5,9 @@
 <h1>Busque al Paciente</h1>
 
 <!-- if there are creation errors, they will show here -->
-{{ HTML::ul($errors->all()) }}
+@if(Session::has('message'))    
+    <div class="alert alert-danger" role="alert">{{ Session::get('message') }}</div>
+@endif
 
 {{ Form::open(array('route' => 'appointments.create.step_2', 'method' => 'post')) }}
 
