@@ -2,12 +2,19 @@
 <!--app/views/patients/create.blade.php-->
 @section('content')
 
-<center><h1>Ingresar un nuevo Paciente</h1></center>
 
+<div class = "row">
+<div class="col-md-10 col-md-offset-1 well" >
+<center><h1>Ingresar un nuevo Paciente</h1></center>
 <!-- if there are creation errors, they will show here -->
+@if($errors->all())
+<div class="alert alert-warning fade in" role="alert">
+      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
 {{ HTML::ul($errors->all()) }}
-<div class="container-fluid well" style="width: 50%">
-	{{ Form::open(array('url' => 'patients')) }}
+    </div>
+
+@endif
+	{{ Form::open(array('url' => 'patients','class' => 'col-md-8 col-md-offset-2')) }}
 
 		<div class = "form-group">
 			{{ Form::label('name', 'Nombre') }}
@@ -59,5 +66,5 @@
 	{{ Form::close() }}
 
 </div>
-
+</div>
 @stop

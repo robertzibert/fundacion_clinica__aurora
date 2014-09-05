@@ -158,7 +158,7 @@ class DoctorsController extends \BaseController {
 	{
 		// delete
 		$doctor = Doctor::find($id);
-		$user = User::where('doctor_id', '=' , $doctor->id)->first();
+		$user   = User::where('doctor_id', '=' , $doctor->id)->first();
 		$user->delete();
 		$doctor->delete();
 
