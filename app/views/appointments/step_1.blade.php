@@ -2,8 +2,9 @@
 <!--/app/views/appointments/step_1.blade.php-->
 
 @section('content')
-<h1>Busque al Paciente</h1>
-
+<div class="row">
+	<div class="well col-md-10 col-md-offset-1 margin-top-small">
+		<h1>Busque al Paciente</h1>
 <!-- if there are creation errors, they will show here -->
 @if(Session::has('message'))    
     <div class="alert alert-danger" role="alert">{{ Session::get('message') }}</div>
@@ -19,5 +20,9 @@
 	{{ Form::submit('Buscar Paciente', array('class' => 'btn btn-primary')) }}
 	
 {{ Form::close() }}
+		
+	</div>
+</div>
+
 
 @stop

@@ -174,15 +174,24 @@ class AppointmentsController extends \BaseController {
 		
 		$user         = User::find(Input::get('user'));
 		$specialism   = Specialism::find(Input::get('specialism'));
-		$date         = Input::get('date')." ".Input::get('hour');
+		$date         = date("Y-m-d H:i:s", strtotime(Input::get('date')." ".Input::get('hour')));
+
 		$schedules    = Schedule::where("date", "=", $date)->lists('doctor_id');
 		$appointments = Appointment::where("active_at", "=", $date)->lists('doctor_id');
 		$doctors_busy = array_unique(array_merge($schedules, $appointments));
 		
-		$doctors_available = Doctor::whereNotIn('id', $doctors_busy)
-												->where('specialism_id', '=', $specialism->id)
-												->get();
-												
+		if(!$doctors_busy){
+			$query = Doctor::where('specialism_id', '=', $specialism->id)
+							->get();
+		}
+		else{
+			$query = Doctor::whereNotIn('id', $doctors_busy)
+							->where('specialism_id', '=', $specialism->id)
+							->get();			
+		}
+
+		$doctors_available = $query;
+		
 		return View::make('appointments.step_3',compact('date','schedules','doctors_available','user','specialism'));
 	}
 }
