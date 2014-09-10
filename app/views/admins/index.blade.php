@@ -89,7 +89,7 @@
 </table>
 {{ HTML::link(URL::to('admins/history'), 'Ver todas las consultas',['class' => 'btn btn-primary']) }}
 
-{{ HTML::link(URL::to('appointments/create'), 'Agregar nueva consulta',['class' => 'btn btn-success']) }}
+{{ HTML::link(URL::to('appointments/step/1'), 'Agregar nueva consulta',['class' => 'btn btn-success']) }}
 	
 </div>
 </div>
