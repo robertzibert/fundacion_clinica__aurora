@@ -71,7 +71,7 @@ class AdminsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$admin = Admin::findOrFail($id);
+		//$admin = Admin::findOrFail($id);
 
 		return View::make('admins.show', compact('admin'));
 	}
@@ -84,7 +84,7 @@ class AdminsController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		$admin = Admin::find($id);
+		//$admin = Admin::find($id);
 
 		return View::make('admins.edit', compact('admin'));
 	}
@@ -97,17 +97,17 @@ class AdminsController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$admin = Admin::findOrFail($id);
+		//$admin = Admin::findOrFail($id);
 
-		$validator = Validator::make($data = Input::all(), Admin::$rules);
-
-		if ($validator->fails())
-		{
-			return Redirect::back()->withErrors($validator)->withInput();
-		}
-
-		$admin->update($data);
-
+		//$validator = Validator::make($data = Input::all(), Admin::$rules);
+		//
+		//if ($validator->fails())
+		//{
+		//	return Redirect::back()->withErrors($validator)->withInput();
+		//}
+		//
+		//$admin->update($data);
+		//
 		return Redirect::route('admins.index');
 	}
 

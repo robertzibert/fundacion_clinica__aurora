@@ -2,9 +2,10 @@
 <!-- app/views/admins/index.blade.php -->
 
 @section('content')
+		
+<div class="row">
+<div class="well col-md-10 col-md-offset-1">
 <h1>Consultas pendientes para hoy</h1>
-
-<!-- will be used to show any messages -->
 @if (Session::has('message'))
 	<div class="alert alert-info">{{ Session::get('message') }}</div>
 @endif
@@ -12,7 +13,6 @@
 <table class="table table-striped table-bordered">
 	<thead>
 		<tr>
-<<<<<<< HEAD
 			<td>Nombre Paciente</td>
 			<td>Rut Paciente</td>
 			<td>Telefono Paciente</td>
@@ -62,7 +62,7 @@
 	<tbody>
 	{{--Handling Exeptions--}}
 	@if($appointments_tomorrow->isEmpty())
-		<tr><td class = "centered" colspan="3">No hay consultas pendientes</td></tr>
+		<tr><td class = "centered" colspan="8">No hay consultas pendientes</td></tr>
 	@endif	
 	@foreach($appointments_tomorrow as $appointment)
 		<tr>
@@ -87,7 +87,12 @@
 	@endforeach
 	</tbody>
 </table>
-{{ HTML::link(URL::to('admins/history'), 'Ver todas las consultas') }}
-<br>
-{{ HTML::link(URL::to('appointments/create'), 'Agregar nueva consulta') }}
+{{ HTML::link(URL::to('admins/history'), 'Ver todas las consultas',['class' => 'btn btn-primary']) }}
+
+{{ HTML::link(URL::to('appointments/create'), 'Agregar nueva consulta',['class' => 'btn btn-success']) }}
+	
+</div>
+</div>
+<!-- will be used to show any messages -->
+	
 @stop

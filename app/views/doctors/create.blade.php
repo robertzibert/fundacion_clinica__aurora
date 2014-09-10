@@ -1,12 +1,13 @@
 @extends('layouts.master')
 <!-- app/views/doctors/create.blade.php-->
 @section('content')
-
-<center><h1>Ingresar un nuevo Doctor</h1></center>
+<div class="row">
+	<div class="well col-md-10 col-md-offset-1">
+		
 		<!-- if there are creation errors, they will show here -->
 		{{ HTML::ul($errors->all()) }}
-<div class="container-fluid well" style="width: 50%">
-		{{ Form::open(array('url' => 'doctors')) }}
+<center><h1>Ingresar un nuevo Doctor</h1></center>
+		{{ Form::open(array('url' => 'doctors','class' => 'col-md-10 col-md-offset-1')) }}
 
 			<div class = "form-group">
 				{{ Form::label('name', 'Nombre') }}
@@ -44,4 +45,7 @@
 
 		{{ Form::close() }}
 </div>
+	</div>
+</div>
+
 @stop
