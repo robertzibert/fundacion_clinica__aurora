@@ -13,4 +13,9 @@ class Schedule extends \Eloquent {
 		"doctor_id"
 	];
 
+public function doctor(){
+
+		return $this -> belongsTo('Doctor');
+	}
+
 }

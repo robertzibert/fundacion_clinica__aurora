@@ -28,7 +28,7 @@
 		<tr>
 			<td>{{ $appointment->patient->user->name }}</td>
 			<td>{{ $appointment->patient->user->rut }}</td>
-			<td>{{ $appointment->patient->user->phone }}</td>
+			<td>{{ $appointment->patient->phone }}</td>
 			<td>{{ $appointment->state }}</td>
 			<!-- we will also add show, edit, and delete buttons -->
 			<td>
@@ -67,7 +67,7 @@
 		<tr>
 			<td>{{ $appointment->patient->user->name }}</td>
 			<td>{{ $appointment->patient->user->rut }}</td>
-			<td>{{ $appointment->patient->user->phone }}</td>
+			<td>{{ $appointment->patient->phone }}</td>
 			<td>{{ $appointment->state }}</td>
 			<!-- we will also add show, edit, and delete buttons -->
 			<td>
