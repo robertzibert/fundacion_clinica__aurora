@@ -1,7 +1,9 @@
 @extends('layouts.master')
 <!-- app/views/appointments/history.blade.php -->
-
 @section('content')
+<div class="row">
+	<div class="well col-md-10 col-md-offset-1">
+		
 <h1>Consultas</h1>
 
 <!-- will be used to show any messages -->
@@ -9,7 +11,7 @@
 	<div class="alert alert-info">{{ Session::get('message') }}</div>
 @endif
 
-<table class="table table-striped table-bordered">
+<table class="table table-striped table-bordered table-condensed">
 	<thead>
 		<tr>
 			<td>Precio</td>
@@ -44,4 +46,6 @@
 </table>
 
 {{ HTML::link(URL::to('appointments/create'), 'Add new appointment') }}
+	</div>
+</div>
 @stop

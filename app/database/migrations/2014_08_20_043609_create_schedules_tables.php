@@ -22,7 +22,7 @@ class CreateSchedulesTables extends Migration {
 		});
 		Schema::table('schedules', function($table)
 		{	
-    	$table->foreign('doctor_id')->references('id')->on('doctors');
+    	$table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade');
 		});
 	}
 

@@ -5,7 +5,7 @@
 <p>Universidad: {{$doctor->university}}</p>
 <p>Telefono {{$doctor->phone}}</p>
 <p>Celular: {{$doctor->cellphone}}</p>
-<h2>Appointments</h2>
+<h2>Consultas</h2>
 
 <table class = "table table-striped table-bordered">
 	<thead>

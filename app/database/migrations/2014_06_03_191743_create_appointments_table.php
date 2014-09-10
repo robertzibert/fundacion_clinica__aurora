@@ -29,8 +29,8 @@ class CreateAppointmentsTable extends Migration {
 	//Foreign Keys
 		Schema::table('appointments', function($table)
 		{	
-    	$table->foreign('patient_id')->references('id')->on('patients');
-    	$table->foreign('doctor_id')->references('id')->on('doctors');
+    	$table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
+    	$table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade');
 		});
 	}
 	/**

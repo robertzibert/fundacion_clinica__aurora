@@ -34,18 +34,18 @@ class PatientsController extends \BaseController {
 		// validate
 		// read more on validation at http://laravel.com/docs/validation
 		$rules = array(
-			'name'      	=> 'required',
-			'lastname'      => 'required',
-			'rut'       	=> 'required|numeric|unique:users',
-			'email'      	=> 'required|email|unique:users',
-			'insurance'		=> 'required',
-			'blood_type'	=> 'required',
-			'address'		=> 'required',
-			'gender'		=> 'required',
-			'phone'		 	=> 'required|unique:patients',
-			'cellphone'		=> 'required|unique:patients',
-			'password'		=> 'required'
-		);
+			'name'       => 'required',                                                                                    
+			'lastname'   => 'required',                                                                            
+			'rut'        => 'required|numeric|unique:users',
+			'email'      => 'required|email|unique:users',        
+			'insurance'  => 'required',                                                                                    
+			'blood_type' => 'required',                                                                                    
+			'address'    => 'required',                                                                                            
+			'gender'     => 'required',                                                                                            
+			'phone'      => 'required|unique:patients',                            
+			'cellphone'  => 'required|unique:patients',                    
+			'password'   => 'required'                                                                                        
+			);
 		$validator = Validator::make(Input::all(), $rules);
 
 		// process the login
@@ -162,9 +162,9 @@ class PatientsController extends \BaseController {
 	public function destroy($id)
 	{
 		// delete
-		$patient = Patient::find($id);
-		$user = User::where('patient_id', '=' , $patient->id)->first();
+		$user    = User::where('patient_id', '=' , $id)->first();
 		$user->delete();
+		$patient = Patient::find($id);
 		$patient->delete();
 
 		// redirect

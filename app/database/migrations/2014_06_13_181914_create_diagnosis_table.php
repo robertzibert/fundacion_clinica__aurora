@@ -26,7 +26,7 @@ class CreateDiagnosisTable extends Migration {
 			//Foreign Keys
 		Schema::table('diagnosis', function($table)
 		{	
-    	$table->foreign('appointments_id')->references('id')->on('appointments');
+    	$table->foreign('appointments_id')->references('id')->on('appointments')->onDelete('cascade');
 		});
 	}	
 

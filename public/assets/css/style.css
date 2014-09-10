@@ -4,6 +4,8 @@ body{
 background-color: #34495e;
 font-family: 'Raleway', sans-serif;
 }
+.table td {
+}
 .container-fluid.content{
 	margin-top: 80px;
 }
