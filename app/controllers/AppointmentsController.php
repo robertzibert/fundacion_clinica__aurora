@@ -120,11 +120,11 @@ class AppointmentsController extends \BaseController {
 				->withInput(Input::except('password'));
 		} else {
 			// store
-			$appointment = Appointment::find($id);
-			$appointment->doctor_id     	= Input::get('doctor');
-			$appointment->patient_id   		= Input::get('patient');
-			$appointment->active_at 		= Input::get('date');
-			$appointment->price 			= Input::get('price');
+			$appointment             = Appointment::find($id);
+			$appointment->doctor_id  = Input::get('doctor');
+			$appointment->patient_id = Input::get('patient');
+			$appointment->active_at  = Input::get('date');
+			$appointment->price      = Input::get('price');
 			$appointment->save();
 
 			// redirect
@@ -193,5 +193,14 @@ class AppointmentsController extends \BaseController {
 		$doctors_available = $query;
 		
 		return View::make('appointments.step_3',compact('date','schedules','doctors_available','user','specialism'));
+	}
+
+	public function void($id){
+		$appointment        = Appointment::find($id);
+		$appointment->state = 'voided';
+		$appointment->save();
+
+		return Redirect::to('admins');
+
 	}
 }
