@@ -3,7 +3,7 @@
 @section('content')
 {{Form::open(array('route' => 'schedules.store'))}}
 <div class="row">
-	<div class="col-md-11 well">
+	<div class="well col-md-10 col-md-offset-1 ">
 		<h1>Agenda Semanal del doctor {{$doctor->user->name}}</h1>
 		<table class = "table table-bordered">
 			{{Form::hidden('doctor_id',$doctor->id)}}
@@ -31,20 +31,37 @@
 				</th>
 			</thead>
 			<tbody>
+				
 				@for($i = 0; $i <30; $i++ )
 					<tr>
 						<td>{{date('h:i A', strtotime($initial_hour . " +".($i*30)." minutes"))}}</td>
-						<td>{{Form::checkbox('date[]', $first_day." ".date('G:i', strtotime($initial_hour . " +".($i*30)." minutes")))}}</td>
-						<td>{{Form::checkbox('date[]', $second_day." ".date('G:i', strtotime($initial_hour . " +".($i*30)." minutes")))}}</td>
-						<td>{{Form::checkbox('date[]', $third_day." ".date('G:i', strtotime($initial_hour . " +".($i*30)." minutes")))}}</td>
-						<td>{{Form::checkbox('date[]', $forth_day." ".date('G:i', strtotime($initial_hour . " +".($i*30)." minutes")))}}</td>
-						<td>{{Form::checkbox('date[]', $last_day." ".date('G:i', strtotime($initial_hour . " +".($i*30)." minutes")))}}</td>
+						
+						<td>
+								@if(in_array(date('Y-m-d H:i:s', strtotime($first_day." ".$initial_hour . " +".($i*30)." minutes")),$schedules))Tomado
+								@else
+									{{Form::checkbox('date[]', $first_day." ".date('G:i', strtotime($initial_hour . " +".($i*30)." minutes")))}}
+								@endif
+						</td>
+						<td>
+							{{Form::checkbox('date[]', $second_day." ".date('G:i', strtotime($initial_hour . " +".($i*30)." minutes")))}}
+						</td>
+						<td>
+							{{Form::checkbox('date[]', $third_day." ".date('G:i', strtotime($initial_hour . " +".($i*30)." minutes")))}}
+						</td>
+						<td>
+							{{Form::checkbox('date[]', $forth_day." ".date('G:i', strtotime($initial_hour . " +".($i*30)." minutes")))}}
+						</td>
+						<td>
+							{{Form::checkbox('date[]', $last_day." ".date('G:i', strtotime($initial_hour . " +".($i*30)." minutes")))}}
+						</td>
+					
 					</tr>
 				@endfor
+			
 			</tbody>
 		</table>
+		{{ Form::submit('Editar Horario',["class" => "btn btn-primary"]) }}
 	</div>
 </div>
-{{Form::submit('Click Me!')}}
 {{Form::close()}}
 @stop

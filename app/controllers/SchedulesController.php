@@ -70,11 +70,9 @@ class SchedulesController extends \BaseController {
 	 */
 	public function edit($id)
 		{
-		$schedules = Schedule::where('doctor_id','=', $id);
+		$schedules = Schedule::where('doctor_id','=', $id)->lists('date');
 		$doctor    = Doctor::find($id);		
-		foreach ($schedules as $schedule) {
-			$taken_time[] = $schedules->date.$schedules->hour;	
-		}
+	
 		
 		$first_day  = date("Y-m-d", strtotime("monday this week"));
 		
@@ -87,7 +85,7 @@ class SchedulesController extends \BaseController {
 		$initial_hour = $hour -> format('H:i');
 
 
-		return View::make('schedules.edit', compact('initial_hour','schedule','first_day','second_day','third_day','forth_day','last_day','taken_time','doctor'));
+		return View::make('schedules.edit', compact('initial_hour','schedules','first_day','second_day','third_day','forth_day','last_day','taken_time','doctor'));
 	}
 
 	/**
