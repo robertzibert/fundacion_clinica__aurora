@@ -22,4 +22,4 @@ class PatientsTableSeeder extends Seeder {
 		}
 	}
 
-}
+}http://jaidefinichon.com/page/5

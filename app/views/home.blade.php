@@ -6,7 +6,7 @@
 </div>
   <div class="row-fluid">
     <div class="col-md-4 col-md-offset-4 well">
-  @if(Session::has('appointments.create.step_1'))    
+  @if(Session::has('message'))    
       <div class="alert alert-danger" role="alert">{{ Session::get('message') }}</div>
   @endif
       {{ Form::open(['action'=>'login.store','method'=>'post','class' => 'form-horizontal']) }}
