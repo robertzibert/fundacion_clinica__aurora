@@ -37,11 +37,8 @@ class AdminsController extends \BaseController {
 	 */
 	public function create()
 	{
-		$doctor = Doctor::lists('name','id');
-		
-		$user= User::lists('name','id');
-
-		return View::make('admins.create', compact('doctor'), compact('user'));
+	
+		return View::make('admins.create');
 	}
 
 	/**
@@ -51,14 +48,30 @@ class AdminsController extends \BaseController {
 	 */
 	public function store()
 	{
-		$validator = Validator::make($data = Input::all(), Admin::$rules);
+
+		$rules = [	
+			'name'      	=> 'required',
+			'lastname'    => 'required',
+			'rut'       	=> 'required|numeric|unique:users',
+			'email'      	=> 'required|email|unique:users',
+			'password'		=> 'required',
+		];
+
+		$validator = Validator::make($data = Input::all(), $rules);
 
 		if ($validator->fails())
 		{
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
 
-		Admin::create($data);
+		$admin           = new User;
+		$admin->name     =Input::get('name'); 
+		$admin->lastname =Input::get('lastname'); 
+		$admin->rut      = Input::get('rut');		
+		$admin->email    =Input::get('email'); 
+		$admin->password =Input::get('password'); 
+		$admin->role_id  = 1;
+		$admin->save();
 
 		return Redirect::route('admins.index');
 	}
@@ -71,7 +84,7 @@ class AdminsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$admin = Admin::findOrFail($id);
+		$admin = User::findOrFail($id);
 
 		return View::make('admins.show', compact('admin'));
 	}
@@ -84,9 +97,9 @@ class AdminsController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		$admin = Admin::find($id);
+		$user = User::find($id);
 
-		return View::make('admins.edit', compact('admin'));
+		return View::make('admins.edit', compact('user'));
 	}
 
 	/**
@@ -97,9 +110,17 @@ class AdminsController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$admin = Admin::findOrFail($id);
+		$admin = User::findOrFail($id);
 
-		$validator = Validator::make($data = Input::all(), Admin::$rules);
+		$rules=[
+			'name'       => 'required',                                                                                                                                                                                
+			'lastname'   => 'required',                                                                                                                                                                        
+			'rut'        => 'required|numeric|unique:users,rut,'.$admin->id,
+			'email'      => 'required|email|unique:users,email,'.$admin->id,
+			'password'   => 'required',                                                                                                                                                                                
+			];
+
+		$validator = Validator::make($data = Input::all(), $rules);
 
 		if ($validator->fails())
 		{
@@ -119,9 +140,16 @@ class AdminsController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		Admin::destroy($id);
+		User::destroy($id);
 
 		return Redirect::route('admins.index');
+	}
+	
+	public function showAdmins(){
+		$admins = User::where('role_id',1)->get();
+
+		return View::make('admins.see_all', compact('admins'));
+
 	}
 
 }

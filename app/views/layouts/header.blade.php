@@ -37,6 +37,13 @@
           </ul>
         </li>
         <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administradores<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/see/admins">Ver Administradores</a></li>
+            <li><a href="/admins/create">Agregar Administradores</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Horarios <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="/schedules">Ver Horarios</a></li>
