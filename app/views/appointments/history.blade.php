@@ -36,7 +36,7 @@
 				<!-- show the nerd (uses the show method found at GET /nerds/{id} -->
 
 				<!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
-				<a class="btn btn-small btn-info" href="{{ URL::to('appointments//' . $appointment->id . '/edit') }}">Editar</a>
+				<a class="btn btn-small btn-info" href="{{ URL::to('appointments/' . $appointment->id . '/edit') }}">Editar</a>
 				<a class="btn btn-small btn-danger" href="{{ URL::to('appointments/void/' . $appointment->id) }}">Anular</a>
 
 			</td>
