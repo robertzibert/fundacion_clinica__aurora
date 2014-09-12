@@ -120,6 +120,7 @@ class DoctorsController extends \BaseController {
 			'rut'        => 'required|numeric|unique:users,rut,'.$doctor->user->id,
 			'email'      => 'required|email|unique:users,email,'.$doctor->user->id,
 			'university' => 'required',                                                                                                                                                                                
+			'password'   => 'required',                                                                                                                                                                                
 			'phone'      => 'required|numeric|unique:doctors,phone,'.$id,                                                
 			'cellphone'  => 'required|numeric|unique:doctors,cellphone,'.$id		                
 		);
@@ -132,10 +133,10 @@ class DoctorsController extends \BaseController {
 				->withInput(Input::except('password'));
 		} else {
 			// store
-			$doctor             = Doctor::find($id);
-			$doctor->phone      =Input::get('phone');
-			$doctor->cellphone  =Input::get('cellphone');
-			$doctor->university =Input::get('university');
+			$doctor                = Doctor::find($id);
+			$doctor->phone         =Input::get('phone');
+			$doctor->cellphone     =Input::get('cellphone');
+			$doctor->university    =Input::get('university');
 			$doctor->specialism_id =Input::get('specialism');
 			$doctor->save();
 
@@ -144,6 +145,8 @@ class DoctorsController extends \BaseController {
 			$user->lastname = input::get('lastname');
 			$user->rut      = input::get('rut');
 			$user->email    = input::get('email');
+			$user->password = input::get('password');
+			
 			$user->save();
 
 			// redirect
