@@ -29,6 +29,7 @@ Route::post('appointments/step/3',['as' => 'appointments.create.step_3', 'uses' 
 //Route to void an Appointment
 Route::get ('appointments/void/{id}',['as' => 'appointments.void', 'uses' => 'AppointmentsController@void']);
 
+Route::get('see/admins', ['as' => 'see.admins', 'uses' => 'AdminsController@showAdmins']);
 
 Route::resource('appointments', 'AppointmentsController');
 
