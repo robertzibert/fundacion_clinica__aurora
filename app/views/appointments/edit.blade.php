@@ -2,7 +2,12 @@
 <!-- app/views/appointments/edit.blade.php -->
 
 @section('content')
-<h1>Edit a Appointment between Dr. {{$appointment->doctor->user->name}} {{$appointment->doctor->user->lastname}} and patient {{$appointment->patient->user->name}} {{$appointment->patient->user->lastname}}</h1>
+<div class="row">
+	<div class="well col-md-10 col-md-offset-1">
+		
+<h3>Cita entre Dr/Dra. {{$appointment->doctor->user->name}} {{$appointment->doctor->user->lastname}} y el paciente {{$appointment->patient->user->name}} {{$appointment->patient->user->lastname}}</h3>
+<p>Fecha: {{$appointment->active_at}}</p>
+
 
 <!-- if there are creation errors, they will show here -->
 {{ HTML::ul($errors->all()) }}
@@ -10,37 +15,21 @@
 {{ Form::model($appointment, array('route' => array('appointments.update', $appointment->id), 'method' => 'PUT')) }}
 
 	<div class="form-group">
-		{{ Form::label('doctor', 'Doctor') }}
-<select name="doctor" class ="form-control">
-
-@foreach($doctors as $doctor)
-{{"<option value=".$doctor->id.">".$doctor->user->name."</option>"}}
-@endforeach
-</select>
-	</div>
-		<div class="form-group">
-		{{ Form::label('patient', 'Patient') }}
-<select name="patient" class ="form-control">
-
-@foreach($patients as $patient)
-{{"<option value=".$patient->id.">".$patient->user->name."</option>"}}
-@endforeach
-</select>
-
+		{{ Form::label('state', 'Estado') }}
+		<select name="state" class ="form-control">
+			<option value='done'>Lista</option>
+			<option value='canceled'>Cancelada</option>
+			<option value='confirmed'>Confirmada</option>
+			<option value='reserved'>Reservada</option>
+			<option value='voided'>Anulada</option>
+		</select>
 	</div>
 
-	<div class="form-group">
-		{{ Form::label('date', 'Date') }}
-		{{ Form::input('date', 'date', null, ['class' => 'form-control', 'placeholder' => 'Date'])}}
-	</div>
 
-	<div class="form-group">
-		{{ Form::label('price', 'Price') }}
-		{{ Form::text('price', Input::old('price'), array('class' => 'form-control')) }}
-	</div>
-
-	{{ Form::submit('Create the appointment', array('class' => 'btn btn-primary')) }}
+	{{ Form::submit('Cambiar Estado', array('class' => 'btn btn-primary')) }}
 
 {{ Form::close() }}
+	</div>
+</div>
 
 @stop

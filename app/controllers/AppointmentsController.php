@@ -106,10 +106,7 @@ class AppointmentsController extends \BaseController {
 		// validate
 		// read more on validation at http://laravel.com/docs/validation
 		$rules = array(
-			'doctor'=> 'required',
-			'patient'  => 'required',
-			'date' 	=> 'required',
-			'price'	=> 'required|numeric'
+			
 		);
 		$validator = Validator::make(Input::all(), $rules);
 
@@ -120,15 +117,12 @@ class AppointmentsController extends \BaseController {
 				->withInput(Input::except('password'));
 		} else {
 			// store
-			$appointment             = Appointment::find($id);
-			$appointment->doctor_id  = Input::get('doctor');
-			$appointment->patient_id = Input::get('patient');
-			$appointment->active_at  = Input::get('date');
-			$appointment->price      = Input::get('price');
+			$appointment        = Appointment::find($id);
+			$appointment->state = Input::get('state');
 			$appointment->save();
 
 			// redirect
-			Session::flash('message', 'Successfully edited appointment!');
+			Session::flash('message', 'Cita modificada exitosamente!');
 			return Redirect::to('admins');
 		}
 	}
@@ -199,8 +193,12 @@ class AppointmentsController extends \BaseController {
 		$appointment        = Appointment::find($id);
 		$appointment->state = 'voided';
 		$appointment->save();
-
-		return Redirect::to('admins');
+		
+			
+		return Redirect::to('/');
+		
+		
+		
 
 	}
 }

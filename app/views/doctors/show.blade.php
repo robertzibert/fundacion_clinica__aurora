@@ -8,6 +8,7 @@
 			<p>Universidad: {{$doctor->university}}</p>
 			<p>Telefono {{$doctor->phone}}</p>
 			<p>Celular: {{$doctor->cellphone}}</p>
+			<p>Especialidad: {{$doctor->specialism->name}}
 			</div>
 		<div class = "col-md-offset-1 col-md-8">
 			<table class = "table table-striped table-bordered">
@@ -27,7 +28,7 @@
 						<td>{{ $appointment->state}}</td>
 						<!-- we will also add show, edit, and delete buttons -->
 						<td>
-							<a class="btn btn-small btn-info" href="{{ URL::to('appointments/' . $appointment->id . '/editappointment')}">Editar</a>
+							<a class="btn btn-small btn-danger" href="{{ URL::to('appointments/void/'.$appointment->id)}}">Anular</a>
 						</td>
 					</tr>
 				@endforeach
