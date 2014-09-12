@@ -21,4 +21,12 @@ class Doctor extends \Eloquent {
 
 		return $this -> hasOne('User');
 	}
+	public function specialism(){
+
+		return $this -> belongsTo('Specialism');
+	}
+	public function schedule(){
+
+		return $this-> hasMany('Schedule');
+	}
 }

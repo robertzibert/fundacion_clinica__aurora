@@ -4,6 +4,8 @@ body{
 background-color: #34495e;
 font-family: 'Raleway', sans-serif;
 }
+.table td {
+}
 .container-fluid.content{
 	margin-top: 80px;
 }
@@ -14,9 +16,12 @@ font-family: 'Raleway', sans-serif;
   text-align: center;
 }
 
-#tittle{
-color: white;
 }
 .margin-top{
 margin-top: 100px;
 }
+.margin-top-small{
+margin-top: 50px;
+}
+#tittle{
+color: white;

@@ -27,7 +27,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		"phone",
 		"cellphone",
 		"address",
-    "email"
+    "email",
+    "password"
     ];
     /**
      *  The hidden variable that never show the model

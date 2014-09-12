@@ -1,7 +1,9 @@
 @extends('layouts.master')
 <!-- app/views/appointments/history.blade.php -->
-
 @section('content')
+<div class="row">
+	<div class="well col-md-10 col-md-offset-1">
+		
 <h1>Consultas</h1>
 
 <!-- will be used to show any messages -->
@@ -9,7 +11,7 @@
 	<div class="alert alert-info">{{ Session::get('message') }}</div>
 @endif
 
-<table class="table table-striped table-bordered">
+<table class="table table-striped table-bordered table-condensed">
 	<thead>
 		<tr>
 			<td>Precio</td>
@@ -32,10 +34,10 @@
 				<!-- we will add this later since its a little more complicated than the other two buttons -->
 
 				<!-- show the nerd (uses the show method found at GET /nerds/{id} -->
-				<a class="btn btn-small btn-success" href="{{ URL::to('appointments/' . $appointment->id) }}">Delete</a>
 
 				<!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
-				<a class="btn btn-small btn-info" href="{{ URL::to('appointments/' . $appointment->id . '/edit') }}">Edit</a>
+				<a class="btn btn-small btn-info" href="{{ URL::to('appointments/' . $appointment->id . '/edit') }}">Editar</a>
+				<a class="btn btn-small btn-danger" href="{{ URL::to('appointments/void/' . $appointment->id) }}">Anular</a>
 
 			</td>
 		</tr>
@@ -43,5 +45,7 @@
 	</tbody>
 </table>
 
-{{ HTML::link(URL::to('appointments/create'), 'Add new appointment') }}
+{{ HTML::link(URL::to('appointments/step/1'), 'Agregar nueva consulta',['class' => 'btn btn-success']) }}
+	</div>
+</div>
 @stop

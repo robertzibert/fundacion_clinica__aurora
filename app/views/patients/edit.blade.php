@@ -2,56 +2,58 @@
 <!--app/views/patients/edit.blade.php-->
 @section('content')
 
-<h1>Edit Pattient {{$patient->user->name}} {{$patient->user->lastname}}</h1>
+<center><h1>Editar Paciente {{$patient->user->name}} {{$patient->user->lastname}}</h1></center>
 
-{{ HTML::ul($errors->all()) }}
+	{{ HTML::ul($errors->all()) }}
 
-{{ Form::model($patient, array('route' => array('patients.update', $patient->id), 'method' => 'PUT')) }}
-	
-	<div class = "form-group">
-		{{ Form::label('name', 'Name') }}
-		{{ Form::text('name', $patient->user->name, ['class' => 'form-control', 'placeholder' => 'Nombre']) }}
-	</div>
-	<div class = "form-group">
-		{{ Form::label('Lastname', 'Last name') }}
-		{{ Form::text('lastname', $patient->user->lastname, ['class' => 'form-control', 'placeholder' => 'Apellido']) }}
-	</div>
-	<div class = "form-group">
-		{{ Form::label('rut', 'Rut') }}
-		{{ Form::text('rut', $patient->user->rut, ['class' => 'form-control', 'placeholder' => 'Rut']) }}
-	</div>
-	<div class = "form-group">
-		{{ Form::label('email', 'Email') }}
-		{{ Form::text('email', $patient->user->email, ['class' => 'form-control', 'placeholder' => 'Email']) }}
-	</div>
-	<div class = "form-group">
-		{{ Form::label('insurance', 'Insurance') }}
-		{{ Form::text('insurance', $patient->insurance, ['class' => 'form-control', 'placeholder' => 'Aseguradora']) }}
-	</div>
-	<div class = "form-group">
-		{{ Form::label('blood_type', 'Blood_type') }}
-		{{ Form::text('blood_type', $patient->blood_type, ['class' => 'form-control', 'placeholder' => 'Dirección']) }}
-	</div>
-	<div class = "form-group">
-		{{ Form::label('address', 'Address') }}
-		{{ Form::text('address', $patient->address, ['class' => 'form-control', 'placeholder' => 'Dirección']) }}
-	</div>
-	</div>
-	<div class = "form-group">
-		{{ Form::label('gender', 'Gender') }}
-		{{ Form::text('gender', $patient->gender, ['class' => 'form-control', 'placeholder' => 'Genero']) }}
-	</div>
-	<div class = "form-group">
-		{{ Form::label('phone', 'Phone') }}
-		{{ Form::text('phone', $patient->phone, ['class' => 'form-control', 'placeholder' => 'Telefono']) }}
-	</div>
-	<div class = "form-group">
-		{{ Form::label('cellphone', 'Cellphone') }}
-		{{ Form::text('cellphone', $patient->cellphone, ['class' => 'form-control', 'placeholder' => 'celular']) }}
-	</div>
+<div class="container-fluid well" style="width: 50%">
 
-	{{ Form::submit('Edit the patient',['class' => 'btn btn-primary']) }}
+	{{ Form::model($patient, array('route' => array('patients.update', $patient->id), 'method' => 'PUT')) }}
+		
+		<div class = "form-group">
+			{{ Form::label('name', 'Nombre') }}
+			{{ Form::text('name', $patient->user->name, ['class' => 'form-control', 'placeholder' => 'Nombre']) }}
+		</div>
+		<div class = "form-group">
+			{{ Form::label('Lastname', 'Apellido') }}
+			{{ Form::text('lastname', $patient->user->lastname, ['class' => 'form-control', 'placeholder' => 'Apellido']) }}
+		</div>
+		<div class = "form-group">
+			{{ Form::label('rut', 'Rut') }}
+			{{ Form::text('rut', $patient->user->rut, ['class' => 'form-control', 'placeholder' => 'Rut']) }}
+		</div>
+		<div class = "form-group">
+			{{ Form::label('email', 'Email') }}
+			{{ Form::text('email', $patient->user->email, ['class' => 'form-control', 'placeholder' => 'Email']) }}
+		</div>
+		<div class = "form-group">
+			{{ Form::label('insurance', 'Aseguradora') }}
+			{{ Form::text('insurance', $patient->insurance, ['class' => 'form-control', 'placeholder' => 'Aseguradora']) }}
+		</div>
+		<div class = "form-group">
+			{{ Form::label('blood_type', 'Grupo Sanguineo') }}
+			{{ Form::text('blood_type', $patient->blood_type, ['class' => 'form-control', 'placeholder' => 'Grupo Sanguineo']) }}
+		</div>
+		<div class = "form-group">
+			{{ Form::label('address', 'Dirección') }}
+			{{ Form::text('address', $patient->address, ['class' => 'form-control', 'placeholder' => 'Dirección']) }}
+		</div>
+		<div class = "form-group">
+			{{ Form::label('gender', 'Genero') }}
+			{{ Form::select('gender', array('male' => 'Masculino', 'female' => 'Femenino'),$patient->gender, array('class' => 'form-control')) }}
+		</div>
+		<div class = "form-group">
+			{{ Form::label('phone', 'Teléfono') }}
+			{{ Form::text('phone', $patient->phone, ['class' => 'form-control', 'placeholder' => 'Teléfono']) }}
+		</div>
+		<div class = "form-group">
+			{{ Form::label('cellphone', 'Celular') }}
+			{{ Form::text('cellphone', $patient->cellphone, ['class' => 'form-control', 'placeholder' => 'Celular']) }}
+		</div>
 
-{{ Form::close() }}
+		{{ Form::submit('Editar Paciente',['class' => 'btn btn-primary']) }}
+
+	{{ Form::close() }}
+</div>
 
 @stop

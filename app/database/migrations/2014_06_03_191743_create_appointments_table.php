@@ -21,15 +21,16 @@ class CreateAppointmentsTable extends Migration {
 			//appointments attr
 			$table->integer('price');
 			$table->text('state');
-			$table->dateTime('active_at');	
+			$table->dateTime('active_at');
+			$table->time('hour');	
 			$table->timestamps();
 		});
 
 	//Foreign Keys
 		Schema::table('appointments', function($table)
 		{	
-    	$table->foreign('patient_id')->references('id')->on('patients');
-    	$table->foreign('doctor_id')->references('id')->on('doctors');
+    	$table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
+    	$table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade');
 		});
 	}
 	/**

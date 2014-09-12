@@ -15,6 +15,7 @@ class DoctorsTableSeeder extends Seeder {
 		foreach(range(1, 5) as $index)
 		{
 			Doctor::create([
+				"specialism_id" => 1,
 				"phone"      => $faker->randomNumber($nbDigits = 7),
 				"cellphone"  => $faker->randomNumber($nbDigits = 7),
 				"university" => $faker->word, 
