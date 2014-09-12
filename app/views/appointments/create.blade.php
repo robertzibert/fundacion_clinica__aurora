@@ -28,7 +28,7 @@
 		{{ Form::text('price', Input::old('price'), array('class' => 'form-control')) }}
 	</div>
 
-	{{ Form::submit('Create the appointment', array('class' => 'btn btn-primary')) }}
+	{{ Form::submit('Crear una cita', array('class' => 'btn btn-primary')) }}
 
 {{ Form::close() }}
 

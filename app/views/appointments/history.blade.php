@@ -45,7 +45,7 @@
 	</tbody>
 </table>
 
-{{ HTML::link(URL::to('appointments/step/1'), 'Add new appointment') }}
+{{ HTML::link(URL::to('appointments/step/1'), 'Agregar nueva consulta',['class' => 'btn btn-success']) }}
 	</div>
 </div>
 @stop

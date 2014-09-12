@@ -2,7 +2,7 @@
 <!--app/views/schedules/index.blade.php-->
 @section('content')
 <div class="row">
-	<div class="col-md-11 well">
+	<div class="well col-md-10 col-md-offset-1 ">
 		<table class = "table table-bordered">
 			<thead>
 				<th>Nombre</th>
