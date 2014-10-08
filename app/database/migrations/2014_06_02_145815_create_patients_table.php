@@ -16,11 +16,9 @@ class CreatePatientsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('insurance');
-			$table->string('blood_type');
-			$table->string('address');
 			$table->string('gender');
-			$table->integer('phone')->unique();
-			$table->integer('cellphone')->unique();
+			$table->integer('phone');
+			$table->integer('cellphone');
 			$table->timestamps();
 		});
 	}
