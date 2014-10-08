@@ -26,10 +26,6 @@
 				{{ Form::text('email', Input::old('email'), ['class' => 'form-control', 'placeholder' => 'Email']) }}
 			</div>
 			<div class = "form-group">
-				{{ Form::label('university', 'Universidad') }}
-				{{ Form::text('university', Input::old('university'), ['class' => 'form-control', 'placeholder' => 'Universidad']) }}
-			</div>
-			<div class = "form-group">
 				{{ Form::label('specialism', 'Especialidad') }}
 				{{ Form::select('specialism', $specialisms, Input::old('specialism'), ['class' => 'form-control']) }}
 			</div>
@@ -45,7 +41,7 @@
 				{{ Form::password('password', ['class' => 'form-control']) }}
 			</div>
 
-	{{ Form::submit('Create the doctor',['class' => 'btn btn-primary']) }}
+	{{ Form::submit('Crear Doctor',['class' => 'btn btn-primary']) }}
 
 {{ Form::close() }}
 </div>

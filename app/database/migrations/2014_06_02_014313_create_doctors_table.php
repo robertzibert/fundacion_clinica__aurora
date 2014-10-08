@@ -16,7 +16,6 @@ class CreateDoctorsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('specialism_id')->unsigned();
-			$table->string('university');
 			$table->integer('phone')->unique();
 			$table->integer('cellphone')->unique();
 			$table->timestamps();
