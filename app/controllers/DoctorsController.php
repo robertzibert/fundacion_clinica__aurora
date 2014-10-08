@@ -117,7 +117,6 @@ class DoctorsController extends \BaseController {
 			'lastname'   => 'required',                                                                                                                                                                        
 			'rut'        => 'required|numeric|unique:users,rut,'.$doctor->user->id,
 			'email'      => 'required|email|unique:users,email,'.$doctor->user->id,
-			'university' => 'required',                                                                                                                                                                                
 			'password'   => 'required',                                                                                                                                                                                
 			'phone'      => 'required|numeric|unique:doctors,phone,'.$id,                                                
 			'cellphone'  => 'required|numeric|unique:doctors,cellphone,'.$id		                
@@ -134,7 +133,6 @@ class DoctorsController extends \BaseController {
 			$doctor                = Doctor::find($id);
 			$doctor->phone         =Input::get('phone');
 			$doctor->cellphone     =Input::get('cellphone');
-			$doctor->university    =Input::get('university');
 			$doctor->specialism_id =Input::get('specialism');
 			$doctor->save();
 

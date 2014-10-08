@@ -15,9 +15,7 @@ class PatientsTableSeeder extends Seeder {
 				"phone"      => $faker->randomNumber($nbDigits = 7),
 				"cellphone"  => $faker->randomNumber($nbDigits = 7),
 				"insurance"  => $faker->randomElement($array = array ('Isapre','Cruz Blanca','Magallanes')),
-				"blood_type" => $faker->randomElement($array = array ('a','b','c')),
-				"address"    => $faker->address,		
-				"gender"     =>$faker->randomElement($array = array ('male','femenin')),
+				"gender"     =>$faker->randomElement($array = array ('male','femenino')),
 			]);
 		}
 	}

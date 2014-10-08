@@ -26,10 +26,6 @@
 			{{ Form::text('email', $doctor->user->email, ['class' => 'form-control', 'placeholder' => 'Email']) }}
 		</div>
 		<div class = "form-group">
-			{{ Form::label('university', 'Universidad') }}
-			{{ Form::text('university', $doctor->university, ['class' => 'form-control', 'placeholder' => 'Universidad']) }}
-		</div>
-		<div class = "form-group">
 			{{ Form::label('phone', 'Teléfono') }}
 			{{ Form::text('phone', $doctor->phone, ['class' => 'form-control', 'placeholder' => 'Telefono']) }}
 		</div>
