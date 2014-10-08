@@ -40,7 +40,6 @@ class DoctorsController extends \BaseController {
 			'lastname'    => 'required',
 			'rut'       	=> 'required|numeric|unique:users',
 			'email'      	=> 'required|email|unique:users',
-			'university' 	=> 'required',
 			'password'		=> 'required',
 			'phone'				=> 'required|numeric|unique:doctors',
 			'cellphone'		=> 'required|numeric|unique:doctors'	
@@ -57,13 +56,12 @@ class DoctorsController extends \BaseController {
 
 			//Asi guardamos un doctor
 			$doctor                = new Doctor;
-			$doctor->university    =Input::get('university');
 			$doctor->phone         =Input::get('phone');
 			$doctor->cellphone     =Input::get('cellphone');
 			$doctor->specialism_id =Input::get('specialism');
 			$doctor->save();
 			
-			$input           = Input::except('university','phone','cellphone','specialism');
+			$input           = Input::except('phone','cellphone','specialism');
 			$user            = new User($input);
 			$user->doctor_id = $doctor->id;
 			$user->save();
