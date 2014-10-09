@@ -75,7 +75,7 @@ class PatientsController extends \BaseController {
 			
 			// redirect
 			Session::flash('message', 'Paciente creado exitosamente!');
-			return Redirect::to('patients');
+		  return Redirect::to('appointments/step/1');		
 		}
 	}
 
