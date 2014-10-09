@@ -15,6 +15,7 @@
 	<thead>
 		<tr>
 			<td>Precio</td>
+			<td>Paciente</td>
 			<td>Estado</td>
 			<td>Fecha</td>
 			<td>Actions</td>
@@ -25,7 +26,8 @@
 	@foreach($appointments as $appointment)
 		<tr>
 			<td>{{ $appointment->price }}</td>
-			<td>{{ $appointment->state }}</td>
+			<td>{{ $appointment->patient->user->name }} {{ $appointment->patient->user->lastname }}</td>
+			<td>{{Lang::get('states.'.$appointment->state)  }}</td>
 			<td>{{ $appointment->active_at->format('Y-m-d') }}</td>
 			<!-- we will also add show, edit, and delete buttons -->
 			<td>
