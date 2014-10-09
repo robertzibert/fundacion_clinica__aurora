@@ -14,6 +14,7 @@
 <table class="table table-striped table-bordered table-condensed">
 	<thead>
 		<tr>
+			<td>Paciente</td>
 			<td>Precio</td>
 			<td>Estado</td>
 			<td>Fecha</td>
@@ -24,6 +25,8 @@
 	
 	@foreach($appointments as $appointment)
 		<tr>
+			<td>{{ $appointment->patient->user->name }} {{ $appointment->patient->user->lastname }}</td>
+			<td>{{Lang::get('states.'.$appointment->state) }}</td>
 			<td>{{ $appointment->price }}</td>
 			<td>{{ $appointment->state }}</td>
 			<td>{{ $appointment->active_at->format('Y-m-d') }}</td>
