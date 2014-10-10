@@ -2,12 +2,14 @@
 <!--app/views/patients/edit.blade.php-->
 @section('content')
 
-<center><h1>Editar Paciente {{$patient->user->name}} {{$patient->user->lastname}}</h1></center>
+
 
 	{{ HTML::ul($errors->all()) }}
 
 <div class="container-fluid well" style="width: 50%">
 
+<center><h1>Editar Paciente {{$patient->user->name}} {{$patient->user->lastname}}</h1></center>
+	
 	{{ Form::model($patient, array('route' => array('patients.update', $patient->id), 'method' => 'PUT')) }}
 		
 		<div class = "form-group">
@@ -27,16 +29,8 @@
 			{{ Form::text('email', $patient->user->email, ['class' => 'form-control', 'placeholder' => 'Email']) }}
 		</div>
 		<div class = "form-group">
-			{{ Form::label('insurance', 'Aseguradora') }}
+			{{ Form::label('insurance', 'Seguro Medico') }}
 			{{ Form::text('insurance', $patient->insurance, ['class' => 'form-control', 'placeholder' => 'Aseguradora']) }}
-		</div>
-		<div class = "form-group">
-			{{ Form::label('blood_type', 'Grupo Sanguineo') }}
-			{{ Form::text('blood_type', $patient->blood_type, ['class' => 'form-control', 'placeholder' => 'Grupo Sanguineo']) }}
-		</div>
-		<div class = "form-group">
-			{{ Form::label('address', 'Dirección') }}
-			{{ Form::text('address', $patient->address, ['class' => 'form-control', 'placeholder' => 'Dirección']) }}
 		</div>
 		<div class = "form-group">
 			{{ Form::label('gender', 'Genero') }}

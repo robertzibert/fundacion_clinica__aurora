@@ -39,9 +39,9 @@ class SchedulesController extends \BaseController {
  
  		foreach ($dates as $key => $date) {
 			
-			$schedule = new Schedule;
+			$schedule            = new Schedule;
 			$schedule->doctor_id = $doctor;
-			$schedule->date = $date;
+			$schedule->date      = $date;
 			$schedule->save();	
 		}
  

@@ -34,18 +34,10 @@
 		</div>
 		<div class = "form-group">
 			{{ Form::label('insurance', 'Aseguradora') }}
-			{{ Form::text('insurance', Input::old('insurance'), ['class' => 'form-control', 'placeholder' => 'Aseguradora']) }}
+			{{ Form::select('insurance',$insurances ,Input::old('insurance'), ['class' => 'form-control', 'placeholder' => 'Aseguradora']) }}
 		</div>
 		<div class = "form-group">
-			{{ Form::label('blood_type', 'Grupo Sanguineo') }}
-			{{ Form::text('blood_type', Input::old('blood_type'), ['class' => 'form-control', 'placeholder' => 'Dirección']) }}
-		</div>
-		<div class = "form-group">
-			{{ Form::label('address', 'Dirección') }}
-			{{ Form::text('address', Input::old('address'), ['class' => 'form-control', 'placeholder' => 'Dirección']) }}
-		</div>
-		<div class = "form-group">
-			{{ Form::label('gender', 'Genero') }}
+			{{ Form::label('gender', 'Género') }}
 			{{ Form::select('gender', array('male' => 'Masculino', 'female' => 'Femenino'),Input::old('gender'), array('class' => 'form-control')) }}
 		</div>
 		<div class = "form-group">
@@ -56,11 +48,7 @@
 			{{ Form::label('cellphone', 'Celular') }}
 			{{ Form::text('cellphone', Input::old('cellphone'), ['class' => 'form-control', 'placeholder' => 'Celular']) }}
 		</div>
-		<div class = "form-group">
-			{{ Form::label('password', 'Contraseña') }}
-			{{ Form::password('password', ['class' => 'form-control']) }}
-		</div>
-
+		
 		{{ Form::submit('Regristrar Paciente',['class' => 'btn btn-primary']) }}
 
 	{{ Form::close() }}

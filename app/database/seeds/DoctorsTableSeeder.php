@@ -18,7 +18,6 @@ class DoctorsTableSeeder extends Seeder {
 				"specialism_id" => 1,
 				"phone"      => $faker->randomNumber($nbDigits = 7),
 				"cellphone"  => $faker->randomNumber($nbDigits = 7),
-				"university" => $faker->word, 
 				
 			]);
 		}

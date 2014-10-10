@@ -21,7 +21,17 @@ class PatientsController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('patients.create');
+		$insurances = array(
+			'Fonasa'      => 'Fonasa',
+			'Colmena'     => 'Colmena',
+			'Consalud'    => 'Consalud',
+			'Cruz Blanca' => 'Cruz Blanca',
+			'Masvida'     => 'Masvida',
+			'Normédica'   => 'Normédica',
+			'Vida Tres'   => 'Vida Tres',
+			);
+
+		return View::make('patients.create',compact('insurances'));
 	}
 
 	/**
@@ -39,36 +49,33 @@ class PatientsController extends \BaseController {
 			'rut'        => 'required|numeric|unique:users',
 			'email'      => 'required|email|unique:users',        
 			'insurance'  => 'required',                                                                                    
-			'blood_type' => 'required',                                                                                    
-			'address'    => 'required',                                                                                            
 			'gender'     => 'required',                                                                                            
-			'phone'      => 'required|unique:patients',                            
-			'cellphone'  => 'required|unique:patients',                    
-			'password'   => 'required'                                                                                        
+			'phone'      => 'required|numeric',
+			'cellphone'  => 'required|numeric'
 			);
 		$validator = Validator::make(Input::all(), $rules);
 
 		// process the login
 		if ($validator->fails()) {
 			return Redirect::to('patients/create')
-				->withErrors($validator)
-				->withInput(Input::except('password'));
+				->withErrors($validator);
+				//->withInput(Input::except('password'));
 		} else {
 			
 
 			//Asi guardamos un doctor
-			$input=Input::except('name','lastname','rut','email','password');
+			$input=Input::except('name','lastname','rut','email');
 			$patient = new Patient($input);
 			$patient->save();
 			
-			$input = Input::except('insurance','blood_type','address','gender','phone','cellphone');
+			$input = Input::except('insurance','gender','phone','cellphone');
 			$user = new User($input);
 			$user->patient_id = $patient->id;
 			$user->save();
 			
 			// redirect
-			Session::flash('message', 'Successfully created Patient!');
-			return Redirect::to('patients');
+			Session::flash('message', 'Paciente creado exitosamente!');
+		  return Redirect::to('appointments/step/1');		
 		}
 	}
 
@@ -110,16 +117,14 @@ class PatientsController extends \BaseController {
 		// read more on validation at http://laravel.com/docs/validation
 		$patient = Patient::find($id);
 		$rules = array(
-			'name'      	=> 'required',
-			'lastname'      => 'required',
-			'rut'       	=> 'required|numeric|unique:users,rut,'.$patient->user->id,
-			'email'      	=> 'required|email|unique:users,email,'.$patient->user->id,
-			'insurance'		=> 'required',
-			'blood_type'	=> 'required',
-			'address'		=> 'required',
-			'gender'		=> 'required',
-			'phone'			=> 'required|numeric|unique:patients,phone,'.$id,
-			'cellphone'		=> 'required|numeric|unique:patients,cellphone,'.$id	
+			'name'       => 'required',
+			'lastname'   => 'required',
+			'rut'        => 'required|numeric|unique:users,rut,'.$patient->user->id,
+			'email'      => 'required|email|unique:users,email,'.$patient->user->id,
+			'insurance'  => 'required',
+			'gender'     => 'required',
+			'phone'      => 'required|numeric',
+			'cellphone'  => 'required|numeric'	
 		);
 		$validator = Validator::make(Input::all(), $rules);
 
@@ -131,24 +136,22 @@ class PatientsController extends \BaseController {
 		} else {
 			// store
 
-			$patient = Patient::find($id);
+			$patient            = Patient::find($id);
 			$patient->insurance = Input::get('insurance');
-			$patient->blood_type = Input::get('blood_type');
-			$patient->address = Input::get('address');
-			$patient->gender = Input::get('gender');
-			$patient->phone = Input::get('phone');
+			$patient->gender    = Input::get('gender');
+			$patient->phone     = Input::get('phone');
 			$patient->cellphone = Input::get('cellphone');
 			$patient->save();
 			
-			$user = User::where('patient_id', '=' , $patient->id)->first();
-			$user->name = input::get('name');
+			$user           = User::where('patient_id', '=' , $patient->id)->first();
+			$user->name     = input::get('name');
 			$user->lastname = input::get('lastname');
-			$user->rut = input::get('rut');
-			$user->email = input::get('email');
+			$user->rut      = input::get('rut');
+			$user->email    = input::get('email');
 			$user->save();
 
 			// redirect
-			Session::flash('message', 'Successfully updated Patient');
+			Session::flash('message', 'Paciente creado exitosamente');
 			return Redirect::to('patients');
 		}
 	}
@@ -168,7 +171,7 @@ class PatientsController extends \BaseController {
 		$patient->delete();
 
 		// redirect
-		Session::flash('message', 'Successfully deleted the Patient!');
+		Session::flash('message', 'Paciente Eliminado!');
 		return Redirect::to('patients');
 	}
 
