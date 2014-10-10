@@ -37,22 +37,36 @@
 						<td>{{date('h:i A', strtotime($initial_hour . " +".($i*30)." minutes"))}}</td>
 						
 						<td>
-								@if(in_array(date('Y-m-d H:i:s', strtotime($first_day." ".$initial_hour . " +".($i*30)." minutes")),$schedules))Tomado
+								@if(in_array(date('Y-m-d H:i:s', strtotime($first_day." ".$initial_hour . " +".($i*30)." minutes")),$schedules))No Atiende
 								@else
 									{{Form::checkbox('date[]', $first_day." ".date('G:i', strtotime($initial_hour . " +".($i*30)." minutes")))}}
 								@endif
 						</td>
 						<td>
-							{{Form::checkbox('date[]', $second_day." ".date('G:i', strtotime($initial_hour . " +".($i*30)." minutes")))}}
+							@if(in_array(date('Y-m-d H:i:s', strtotime($second_day." ".$initial_hour . " +".($i*30)." minutes")),$schedules))No Atiende
+							@else
+									{{Form::checkbox('date[]', $second_day." ".date('G:i', strtotime($initial_hour . " +".($i*30)." minutes")))}}
+							@endif
+							
 						</td>
 						<td>
-							{{Form::checkbox('date[]', $third_day." ".date('G:i', strtotime($initial_hour . " +".($i*30)." minutes")))}}
+							@if(in_array(date('Y-m-d H:i:s', strtotime($third_day." ".$initial_hour . " +".($i*30)." minutes")),$schedules))No Atiende
+								@else
+									{{Form::checkbox('date[]', $third_day." ".date('G:i', strtotime($initial_hour . " +".($i*30)." minutes")))}}
+								@endif
+							
 						</td>
 						<td>
-							{{Form::checkbox('date[]', $forth_day." ".date('G:i', strtotime($initial_hour . " +".($i*30)." minutes")))}}
+							@if(in_array(date('Y-m-d H:i:s', strtotime($forth_day." ".$initial_hour . " +".($i*30)." minutes")),$schedules))No Atiende
+							@else
+								{{Form::checkbox('date[]', $forth_day." ".date('G:i', strtotime($initial_hour . " +".($i*30)." minutes")))}}
+							@endif
 						</td>
 						<td>
-							{{Form::checkbox('date[]', $last_day." ".date('G:i', strtotime($initial_hour . " +".($i*30)." minutes")))}}
+							@if(in_array(date('Y-m-d H:i:s', strtotime($last_day." ".$initial_hour . " +".($i*30)." minutes")),$schedules))No Atiende
+							@else
+								{{Form::checkbox('date[]', $last_day." ".date('G:i', strtotime($initial_hour . " +".($i*30)." minutes")))}}
+							@endif
 						</td>
 					
 					</tr>
