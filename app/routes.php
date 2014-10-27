@@ -24,6 +24,7 @@ Route::resource('doctors', 'DoctorsController');
 //Routes to create Appointments
 Route::get('appointments/step/1', ['as' => 'appointments.create.step_1', 'uses' => 'AppointmentsController@step_1']);
 Route::post('appointments/step/2',['as' => 'appointments.create.step_2', 'uses' => 'AppointmentsController@step_2']);
+Route::get('appointments/step/2/{rut}', ['as' => 'appointments.create.step_2.rut', 'uses' => 'AppointmentsController@step_2_rut']);
 Route::post('appointments/step/3',['as' => 'appointments.create.step_3', 'uses' => 'AppointmentsController@step_3']);
 
 //Route to void an Appointment

@@ -60,7 +60,7 @@ class AppointmentsController extends \BaseController {
 			$appointment->save();
 
 			// redirect
-			Session::flash('message', 'Successfully created appointment!');
+			Session::flash('message', 'Consulta creada exitosamente!');
 			return Redirect::to('admins');
 		}
 	}
@@ -200,5 +200,18 @@ class AppointmentsController extends \BaseController {
 		
 		
 
+	}
+	public function step_2_rut($rut){
+		try{
+    $rut  = $rut;
+		$user = User::where('rut', '=', $rut)->firstOrFail();
+		}
+		
+		catch (Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+    Session::flash('message', 'Paciente no existe');
+		return Redirect::route('appointments.create.step_1');    
+		}
+		$specialisms = Specialism::all()->lists('name','id');		
+		return View::make('appointments.step_2',compact('rut','user','specialisms'));	
 	}
 }
