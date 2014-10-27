@@ -1,9 +1,9 @@
 <?php
 return array(
 
-'reserved' => 'Reservado',
+'reserved'  => 'Reservado',
 'confirmed' => 'Confirmado',
-'canceled' => 'Cancelado',
-'done' => 'Lista',
-'voided' => 'Anulada'
+'canceled'  => 'Cancelado',
+'done'      => 'Lista',
+'voided'    => 'Anulada'
 );
