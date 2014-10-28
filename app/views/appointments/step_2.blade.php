@@ -1,6 +1,8 @@
 @extends('layouts.master')
 <!--/app/views/appointments/step_2.blade.php-->
-
+@section('meta-title')
+	Creación de Consulta: Paso 2
+@stop
 @section('content')
 <div class="row">
 	<div class="well col-md-10 col-md-offset-1 margin-top-small">

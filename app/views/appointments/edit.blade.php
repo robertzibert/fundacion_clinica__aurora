@@ -1,6 +1,8 @@
 @extends('layouts.master')
 <!-- app/views/appointments/edit.blade.php -->
-
+@section('meta-title')
+	Edición de Consultas
+@stop
 @section('content')
 <div class="row">
 	<div class="well col-md-10 col-md-offset-1">

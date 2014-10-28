@@ -1,7 +1,9 @@
 @extends('layouts.master')
 <!-- app/views/doctors/index.blade.php-->
 @section('content')
-
+@section('meta-title')
+	Doctores
+@stop
 <table class = "table table-striped table-bordered">
 	<thead>
 			<th>Nombre y Apellido</th>

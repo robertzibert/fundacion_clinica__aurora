@@ -1,5 +1,9 @@
 @extends("layouts/master")
 <!--app/views/schedules/index.blade.php-->
+@section('meta-title')
+	Horarios
+	
+@stop
 @section('content')
 <div class="row">
 	<div class="well col-md-10 col-md-offset-1 ">

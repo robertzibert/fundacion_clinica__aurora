@@ -1,5 +1,8 @@
 @extends('layouts.master')
 <!-- app/views/doctors/index.blade.php-->
+@section('meta-title')
+	Administradores
+@stop
 @section('content')
 
 <table class = "table table-striped table-bordered">
