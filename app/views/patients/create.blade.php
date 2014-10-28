@@ -1,5 +1,8 @@
 @extends('layouts.master')
 <!--app/views/patients/create.blade.php-->
+@section('meta-title')
+	Creación de Consulta: Paso 1
+@stop
 @section('content')
 
 

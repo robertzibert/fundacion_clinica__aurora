@@ -1,5 +1,8 @@
 @extends('layouts.master')
 <!-- app/views/doctors/create.blade.php-->
+@section('meta-title')
+	Crear Doctor
+@stop
 @section('content')
 <div class="row">
 	<div class="well col-md-10 col-md-offset-1">

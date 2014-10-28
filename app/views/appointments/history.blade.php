@@ -1,5 +1,8 @@
 @extends('layouts.master')
 <!-- app/views/appointments/history.blade.php -->
+@section('meta-title')
+	Historial de Consultas
+@stop
 @section('content')
 <div class="row">
 	<div class="well col-md-10 col-md-offset-1">

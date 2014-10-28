@@ -1,6 +1,8 @@
 @extends('layouts.master')
 <!-- app/views/appointments/create.blade.php -->
-
+@section('meta-title')
+	Creación de Consultas
+@stop
 @section('content')
 <h1>Create a Appointment</h1>
 

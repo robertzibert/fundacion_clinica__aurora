@@ -1,5 +1,8 @@
 @extends('layouts.master')
 <!--app/views/patients/index.blade.php-->
+@section('meta-title')
+	Pacientes
+@stop
 @section('content')
 	<div class="col-md-12">
 	

@@ -1,5 +1,9 @@
 @extends('layouts.master')
 <!--app/views/specialisms/index.blade.php-->
+@section('meta-title')
+  Especialidades
+  
+@stop
 @section('content')
 
 <table class = "table table-striped table-bordered">

@@ -1,6 +1,7 @@
 @extends('layouts.master')
 <!--app/views/home.blade.php-->
 @section('content')
+
 <div class="row-fluid centered" id="tittle">
     <h1>Bienvenido</h1>
 </div>

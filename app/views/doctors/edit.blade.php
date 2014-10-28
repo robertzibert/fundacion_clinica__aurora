@@ -1,5 +1,8 @@
 @extends('layouts.master')
 <!-- app/views/doctors/edit.blade.php-->
+@section('meta-title')
+	Edición de Doctores
+@stop
 @section('content')
 
 

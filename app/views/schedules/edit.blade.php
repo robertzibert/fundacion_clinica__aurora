@@ -1,5 +1,9 @@
 @extends('layouts/master')
 <!--app/views/schedules/edit.blade.php-->
+@section('meta-title')
+	Ver Horario
+	
+@stop
 @section('content')
 {{Form::open(array('route' => 'schedules.store'))}}
 <div class="row">

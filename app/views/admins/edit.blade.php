@@ -1,5 +1,9 @@
 @extends('layouts.master')
 <!-- app/views/doctors/edit.blade.php-->
+@section('meta-title')
+	Editar Administrador
+	
+@stop
 @section('content')
 
 
