@@ -1,3 +1,6 @@
+/.vagrant
+Vagrantfile
+bootstrap.sh
 /app/config/database.php
 /bootstrap/compiled.php
 /vendor
