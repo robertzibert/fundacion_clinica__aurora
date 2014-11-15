@@ -31,7 +31,6 @@
 			<td>{{ $appointment->patient->user->name }} {{ $appointment->patient->user->lastname }}</td>
 			<td>{{Lang::get('states.'.$appointment->state) }}</td>
 			<td>{{ $appointment->price }}</td>
-			<td>{{ $appointment->state }}</td>
 			<td>{{ $appointment->active_at->format('Y-m-d') }}</td>
 			<!-- we will also add show, edit, and delete buttons -->
 			<td>
@@ -43,7 +42,7 @@
 
 				<!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
 				<a class="btn btn-small btn-info" href="{{ URL::to('appointments/' . $appointment->id . '/edit') }}">Editar</a>
-				<a class="btn btn-small btn-danger" href="{{ URL::to('appointments/void/' . $appointment->id) }}">Anular</a>
+				
 
 			</td>
 		</tr>
