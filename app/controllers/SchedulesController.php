@@ -34,7 +34,8 @@ class SchedulesController extends \BaseController {
 		$doctors = Doctor::all();		
 		$doctor  = Input::get('doctor_id');
 		$dates   = Input::get('date');
- 
+ 		
+ 		if(!$dates)return Redirect::back()->withErrors('No has seleccionado ningún horario')->withInput();
  
  
  		foreach ($dates as $key => $date) {
