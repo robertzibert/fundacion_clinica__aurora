@@ -8,6 +8,7 @@
 {{Form::open(array('route' => 'schedules.store'))}}
 <div class="row">
 	<div class="well col-md-10 col-md-offset-1 ">
+		{{ HTML::ul($errors->all()) }}
 		<h1>Agenda Semanal del doctor {{$doctor->user->name}}</h1>
 		<table class = "table table-bordered">
 			{{Form::hidden('doctor_id',$doctor->id)}}

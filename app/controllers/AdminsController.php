@@ -11,8 +11,7 @@ class AdminsController extends \BaseController {
 	
 	{
 		
-		$appointments = Appointment::orderBy('active_at')->get();
-
+		$appointments = Appointment::orderBy('active_at')->with('patient.user')->get();		
 		return View::make('appointments.history', compact('appointments'));
 
 	}
