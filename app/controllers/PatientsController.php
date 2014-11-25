@@ -57,9 +57,7 @@ class PatientsController extends \BaseController {
 
 		// process the login
 		if ($validator->fails()) {
-			return Redirect::to('patients/create')
-				->withErrors($validator);
-				//->withInput(Input::except('password'));
+			return Redirect::to('patients/create')->withErrors($validator)->withInput();
 		} else {
 			
 
