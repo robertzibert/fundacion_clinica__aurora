@@ -123,5 +123,14 @@ class SchedulesController extends \BaseController {
 
 		return Redirect::route('schedules.index');
 	}
-
+	
+	public function taken($doctor_id)
+	{
+		$this_week  = Carbon::now();
+		$next_week  = Carbon::now();
+		$start_date = $this_week->startOfWeek();
+		$end_date   = $next_week->endOfMonth();
+		$schedules  = Schedule::where('doctor_id',$doctor_id)->whereBetween('date', [$start_date, $end_date])->get();
+		return View::make('schedules.taken',compact('schedules'));
+	}
 }
