@@ -55,7 +55,7 @@
 							
 						</td>
 						<td>
-							@if(in_array(date('Y-m-d H:i:s', strtotime($third_day." ".$initial_hour . " +".($i*30)." minutes")),$schedules))No Atiende
+							@if(in_array(date('Y-m-d H:i:s', strtotime($third_day." ".$initial_hour . " +".($i*30)." minutes")),$schedules))No Atiende 
 								@else
 									{{Form::checkbox('date[]', $third_day." ".date('G:i', strtotime($initial_hour . " +".($i*30)." minutes")))}}
 								@endif

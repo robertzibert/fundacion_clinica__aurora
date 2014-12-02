@@ -15,6 +15,7 @@ Route::post('doctors/updateAppointment/{id}', 'DoctorsController@updateAppointme
 Route::get('appointments/{appointment_id}/editappointment', 'DoctorsController@editAppointment');
 Route::get('admins/history','AdminsController@history');
 Route::get('logout','LoginController@destroy');
+Route::get('schedules/taken/{doctor_id}',['as' => 'schedules.taken', 'uses' => 'SchedulesController@taken']);
 Route::get('/', 'LoginController@index');
 Route::resource('login', 'LoginController');
 Route::resource('admins', 'AdminsController');
