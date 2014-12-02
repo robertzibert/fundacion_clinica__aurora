@@ -117,20 +117,22 @@ class SchedulesController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy()
 	{
-		Schedule::destroy($id);
-
-		return Redirect::route('schedules.index');
+		$dates   = Input::get('schedules');
+		Schedule::destroy($dates);
+		return Redirect::back();
+		
 	}
 	
 	public function taken($doctor_id)
 	{
+		$doctor     = Doctor::find($doctor_id);
 		$this_week  = Carbon::now();
 		$next_week  = Carbon::now();
 		$start_date = $this_week->startOfWeek();
 		$end_date   = $next_week->endOfMonth();
 		$schedules  = Schedule::where('doctor_id',$doctor_id)->whereBetween('date', [$start_date, $end_date])->get();
-		return View::make('schedules.taken',compact('schedules'));
+		return View::make('schedules.taken',compact('schedules','doctor'));
 	}
 }
