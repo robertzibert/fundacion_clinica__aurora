@@ -19,7 +19,6 @@
 			<td>
 				{{ Form::open(array('url' => 'specialisms/' . $specialism->id)) }}
 					{{ Form::hidden('_method', 'DELETE') }}
-						<a class="btn btn-small btn-info" href="{{ URL::to('specialisms/' . $specialism->id . '/edit') }}">Edit</a>
 					{{ Form::submit('Delete',["class" => "btn btn-danger"]) }}
 				<!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
 				{{ Form::close() }}
@@ -28,5 +27,5 @@
 	@endforeach
 	</tbody>
 </table>
-{{ HTML::link(URL::to('specialisms/create'), 'Agregar una Especialidad') }}
+{{ HTML::link(URL::to('specialisms/create'), 'Agregar una Especialidad',["class" => "btn btn-primary"]) }}
 @stop
