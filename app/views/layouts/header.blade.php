@@ -23,13 +23,6 @@
           </ul>
         </li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pacientes <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="/patients">Ver Pacientes</a></li>
-            <li><a href="/patients/create">Agregar Pacientes</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Especialidades <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="/specialisms">Ver Especialidades</a></li>

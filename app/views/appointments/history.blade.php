@@ -28,7 +28,7 @@
 	
 	@foreach($appointments as $appointment)
 		<tr>
-			<td>{{ $appointment->patient->user->name }} {{ $appointment->patient->user->lastname }}</td>
+			<td>{{ $appointment->name }} {{ $appointment->lastname }}</td>
 			<td>{{Lang::get('states.'.$appointment->state) }}</td>
 			<td>{{ $appointment->price }}</td>
 			<td>{{ $appointment->active_at->format('Y-m-d') }}</td>
@@ -50,7 +50,7 @@
 	</tbody>
 </table>
 
-{{ HTML::link(URL::to('appointments/step/1'), 'Agregar nueva consulta',['class' => 'btn btn-success']) }}
+{{ HTML::link(URL::to('appointment/create'), 'Agregar nueva consulta',['class' => 'btn btn-success']) }}
 	</div>
 </div>
 @stop

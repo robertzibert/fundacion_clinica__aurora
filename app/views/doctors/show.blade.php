@@ -22,12 +22,13 @@
 				<tbody>
 				@foreach($appointments as $appointment)
 					<tr>
-						<td>{{ $appointment->patient->user->name }}</td>
-						<td>{{ $appointment->patient->user->lastname }}</td>
+						<td>{{ $appointment->name }}</td>
+						<td>{{ $appointment->lastname }}</td>
 						<td>{{ $appointment->active_at }}</td>
 						<td>{{ $appointment->state}}</td>
 						<!-- we will also add show, edit, and delete buttons -->
 						<td>
+							<a class="btn btn-small btn-info" href="{{ URL::to('appointments/' . $appointment->id . '/edit') }}">Editar</a>
 							<a class="btn btn-small btn-danger" href="{{ URL::to('appointments/void/'.$appointment->id)}}">Anular</a>
 						</td>
 					</tr>

@@ -12,6 +12,11 @@ font-family: 'Raleway', sans-serif;
 .table{
 	background-color: #efefef;
 }
+
+.panel-body>.table{
+	background-color: rgba(255, 255, 255, 0);
+}
+
 .centered{
   text-align: center;
 }
@@ -25,3 +30,4 @@ margin-top: 50px;
 }
 #tittle{
 color: white;
+}

@@ -22,7 +22,7 @@
 			</div>
 			<div class = "form-group">
 				{{ Form::label('rut', 'Rut') }}
-				{{ Form::text('rut', Input::old('rut'), ['class' => 'form-control', 'placeholder' => 'Rut']) }}
+				{{ Form::text('rut', Input::old('rut'), ['class' => 'form-control', 'placeholder' => 'Rut','data-mask' => '#0.000.000-A', 'data-mask-reverse' => 'true']) }}
 			</div>
 			<div class = "form-group">
 				{{ Form::label('email', 'Email') }}

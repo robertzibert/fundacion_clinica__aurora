@@ -7,7 +7,7 @@
 <div class="row">
 	<div class="well col-md-10 col-md-offset-1">
 		
-<h3>Cita entre Dr/Dra. {{$appointment->doctor->user->name}} {{$appointment->doctor->user->lastname}} y el paciente {{$appointment->patient->user->name}} {{$appointment->patient->user->lastname}}</h3>
+<h3>Cita entre Dr/Dra. {{$appointment->doctor->user->name}} {{$appointment->doctor->user->lastname}} y el paciente {{$appointment->name}} {{$appointment->lastname}}</h3>
 <p>Fecha: {{$appointment->active_at}}</p>
 
 
@@ -26,7 +26,10 @@
 			<option value='voided'>Anulada</option>
 		</select>
 	</div>
-
+  <div class="form-group">
+ 		{{ Form::label('observation', 'Observación') }}
+<textarea name="obsercation" class="form-control"></textarea>
+  </div>
 
 	{{ Form::submit('Cambiar Estado', array('class' => 'btn btn-primary')) }}
 
