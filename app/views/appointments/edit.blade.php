@@ -28,7 +28,8 @@
 	</div>
   <div class="form-group">
  		{{ Form::label('observation', 'Observación') }}
-<textarea name="obsercation" class="form-control"></textarea>
+		{{ Form::textarea('observation', $appointment->observation, ['class' => 'form-control']) }}
+
   </div>
 
 	{{ Form::submit('Cambiar Estado', array('class' => 'btn btn-primary')) }}

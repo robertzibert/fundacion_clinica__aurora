@@ -129,13 +129,19 @@ class AppointmentsController extends \BaseController
         ->withInput(Input::except('password'));
     } else {
       // store
-      $appointment        = Appointment::find($id);
-      $appointment->state = Input::get('state');
+      $appointment              = Appointment::find($id);
+      $appointment->state       = Input::get('state');
+      $appointment->observation = Input::get('observation');
       $appointment->save();
 
       // redirect
       Session::flash('message', 'Cita modificada exitosamente!');
+      if (Auth::user()->doctor_id != 0) {
+        return Redirect::to('doctors/' . Auth::user()->doctor_id);
+      }
       return Redirect::to('admins');
+
+
     }
   }
 
