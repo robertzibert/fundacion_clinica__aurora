@@ -13,11 +13,13 @@
 <table class="table table-striped table-bordered">
 	<thead>
 		<tr>
-			<td>Nombre Paciente</td>
-			<td>Rut Paciente</td>
-			<td>Telefono Paciente</td>
-			<td>Estado</td>
-			<td>Actions</td>
+		      <td>Nombre Paciente</td>
+    			<td>Rut Paciente</td>
+    			<td>Género</td>
+    			<td>Telefono Paciente</td>
+    			<td>Hora</td>
+    			<td>Estado</td>
+    			<td>Actions</td>
 		</tr>
 	</thead>
 	<tbody>
@@ -27,9 +29,11 @@
 	@endif	
 	@foreach($appointments_today as $appointment)
 		<tr>
-			<td>{{ $appointment->patient->user->name }}</td>
-			<td>{{ $appointment->patient->user->rut }}</td>
-			<td>{{ $appointment->patient->phone }}</td>
+			<td>{{ $appointment->name }} {{ $appointment->lastname }}</td>
+      <td>{{ $appointment->rut }}</td>
+      <td>{{Lang::get('vocabulary.'.$appointment->gender) }}</td>
+      <td>{{ $appointment->phone }}</td>
+      <td class="text-danger">{{ $appointment->active_at->format("H:i") }}</td>
 			<td>{{Lang::get('states.'.$appointment->state) }}</td>
 			<!-- we will also add show, edit, and delete buttons -->
 			<td>
@@ -52,7 +56,9 @@
 		<tr>
 			<td>Nombre Paciente</td>
 			<td>Rut Paciente</td>
+			<td>Género</td>
 			<td>Telefono Paciente</td>
+			<td>Hora</td>
 			<td>Estado</td>
 			<td>Actions</td>
 		</tr>
@@ -64,9 +70,11 @@
 	@endif	
 	@foreach($appointments_tomorrow as $appointment)
 		<tr>
-			<td>{{ $appointment->patient->user->name }}</td>
-			<td>{{ $appointment->patient->user->rut }}</td>
-			<td>{{ $appointment->patient->phone }}</td>
+			<td>{{ $appointment->name }} {{ $appointment->lastname }}</td>
+			<td>{{ $appointment->rut }}</td>
+			<td>{{ $appointment->gender }}</td>
+			<td>{{ $appointment->phone }}</td>
+			<td>{{ $appointment->active_at->format("hh:mm") }}</td>
 			<td>{{Lang::get('states.'.$appointment->state) }}</td>
 			<!-- we will also add show, edit, and delete buttons -->
 			<td>
@@ -87,7 +95,7 @@
 </table>
 {{ HTML::link(URL::to('admins/history'), 'Ver todas las consultas',['class' => 'btn btn-primary']) }}
 
-{{ HTML::link(URL::to('appointments/step/1'), 'Agregar nueva consulta',['class' => 'btn btn-success']) }}
+{{ HTML::link(URL::to('appointment/create'), 'Agregar nueva consulta',['class' => 'btn btn-success']) }}
 	
 </div>
 </div>

@@ -7,7 +7,7 @@ class Patient extends \Eloquent {
 	 * @var string
 	 */
 	protected $table = 'patients';
-	
+
 	protected $fillable = [
 
 		"phone",

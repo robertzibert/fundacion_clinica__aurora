@@ -1,0 +1,10 @@
+{
+  "name": "Fundacion",
+  "dependencies": {
+    "angular-ui-calendar": "latest",
+    "angular-sweetalert": "~1.0.4",
+    "moment": "~2.9.0",
+    "jQuery-Mask-Plugin": "~1.11.3",
+    "angular-loading-bar": "~0.6.0"
+  }
+}

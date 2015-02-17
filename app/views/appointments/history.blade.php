@@ -18,6 +18,9 @@
 	<thead>
 		<tr>
 			<td>Paciente</td>
+			<td>Rut</td>
+			<td>Email</td>
+			<td>Teléfono</td>
 			<td>Precio</td>
 			<td>Estado</td>
 			<td>Fecha</td>
@@ -28,19 +31,16 @@
 	
 	@foreach($appointments as $appointment)
 		<tr>
-			<td>{{ $appointment->patient->user->name }} {{ $appointment->patient->user->lastname }}</td>
-			<td>{{Lang::get('states.'.$appointment->state) }}</td>
+			<td>{{ $appointment->name }} {{ $appointment->lastname }}</td>
+			<td>{{ $appointment->rut}}</td>
+			<td>{{ $appointment->phone}}</td>
+			<td>{{ $appointment->email }}</td>
 			<td>{{ $appointment->price }}</td>
+			<td>{{Lang::get('states.'.$appointment->state) }}</td>
 			<td>{{ $appointment->active_at->format('Y-m-d') }}</td>
-			<!-- we will also add show, edit, and delete buttons -->
+
 			<td>
 
-				<!-- delete the nerd (uses the destroy method DESTROY /nerds/{id} -->
-				<!-- we will add this later since its a little more complicated than the other two buttons -->
-
-				<!-- show the nerd (uses the show method found at GET /nerds/{id} -->
-
-				<!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
 				<a class="btn btn-small btn-info" href="{{ URL::to('appointments/' . $appointment->id . '/edit') }}">Editar</a>
 				
 
@@ -50,7 +50,7 @@
 	</tbody>
 </table>
 
-{{ HTML::link(URL::to('appointments/step/1'), 'Agregar nueva consulta',['class' => 'btn btn-success']) }}
+{{ HTML::link(URL::to('appointment/create'), 'Agregar nueva consulta',['class' => 'btn btn-success']) }}
 	</div>
 </div>
 @stop

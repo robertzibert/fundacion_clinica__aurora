@@ -20,7 +20,7 @@
 						<td>{{$doctor->specialism->name}} </td>
 						<td>
 							<a href = "{{ URL::route('schedules.edit', $doctor->id) }}" class = "btn btn-success">Editar horario</a>
-							<a href = "{{ URL::route('schedules.taken', $doctor->id) }}" class = "btn btn-danger">Cancelar horas</a>
+							<a href = "{{ URL::route('schedules.taken', $doctor->id) }}" class = "btn btn-dangerc">Cancelar horas</a>
 						</td>
 					</tr>
 				@endforeach
